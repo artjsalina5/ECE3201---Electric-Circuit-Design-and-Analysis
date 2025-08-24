@@ -1,0 +1,23 @@
+********  Problem: P7_98(b)	***************
+******* Main circuit begins here**************
+RG2         0 VG  2MEG
+V_DD         VDD 0 10Vdc
+RD         VD 0  3k
+RS         VDD VS  4.74k
+RG1         VDD VG  8MEG
+M1         VD VG VS VDD PMOS0P5
++ L=2u
++ W=25u
++ M=1
+******* Main circuit ends here*******************************
+
+***************** NMOS model begins here ********************
+.model PMOS0P5	PMOS(Level=1 VTO=-2 GAMMA=0.045 PHI=0.8
++		LD=0 WD=0 UO=275 LAMBDA=0.02 TOX=9.5E-9 PB=0.9 CJ=0.93E-3
++		CJSW=170E-12 MJ=0.5 MJSW=0.35 CGDO=0.35E-9 JS=5E-9 CGBO=0.38E-9
++		CGSO=0.35E-9)
+***************** NMOS model ends here **********************
+
+******** Analysis begins here****************
+.op
+******** Analysis ends here******************

@@ -1,0 +1,43 @@
+********Problem: P10_22		***************
+******* Main circuit begins here**************
+IBIAS         VG23 0 DC 100uAdc
+RSIG         VSIG VG1  20k TC=0,0
+VS         VSIG 0  AC 10m
++SIN 0.58 2m 1k 0 0 0
+V1         VDD 0 1.8Vdc
+M1         VO VG1 0 0 NMOS0P18
++ L=0.4u
++ W=5u
++ M=1
+M2         VO VG23 VDD VDD PMOS0P18
++ L=0.4u
++ W=5u
++ M=1
+M3         VG23 VG23 VDD VDD PMOS0P18
++ L=0.4u
++ W=5u
++ M=1
+CGS         0 VG1  17.5f
+CGD         VO VG1  3.2f
+******* Main circuit ends here***************
+***************** PMOS model begins here ******************************
+.model PMOS0P18	PMOS(Level=1 VTO=-0.4 GAMMA=0.3 PHI=0.8
++		LD=0 WD=0 UO=118 LAMBDA=0.2 TOX=4.08E-9 PB=0.9 CJ=1E-3
++		CJSW=2.04E-10 MJ=0.45 MJSW=0.29 CGDO=3.43E-10 JS=4.0E-7 CGBO=3.5E-10
++		CGSO=3.43E-10)
+***************** PMOS model ends here *****************************************
+***************** NMOS model begins here ******************************
+.model NMOS0P18	NMOS(Level=1 VTO=0.4 GAMMA=0.3 PHI=0.84
++		LD=0 WD=0 UO=473 LAMBDA=0.2 TOX=4.08E-9 PB=0.9 CJ=1.6E-3
++		CJSW=2.04E-10 MJ=0.5 MJSW=0.11 CGDO=3.67E-10 JS=8.38E-6 CGBO=3.8E-10
++		CGSO=3.67E-10)
+***************** NMOS model ends here *****************************************
+
+
+******** Analysis begins here****************
+.OP
+.AC  DEC   20  1 1T
+.PROBE
+.END
+******** Analysis ends here****************
+

@@ -1,0 +1,49 @@
+********Example S 12.1 ***************
+******* Main circuit begins here**************
+Q_QN         VCC IN OUT QMJE243
+V_-VCC         0 -VCC {VCC}
+R_RL         OUT 0  {RL}
+V_VCC         VCC 0 {VCC}
+Q_QP         -VCC IN OUT QMJE253
+V_Vin         IN 0
++SIN 0 17.9 1K 0 0 0
+.PARAM  vcc=23 rl=8
+******* Main circuit ends here**************
+
+********Model for MJE243 Power NPN BJT (from ON Semiconductor) begins here*****
+.model	QMJE243 NPN(
++	IS=1.27357e-12 BF=188.792 NF=1.05658 VAF=13.5417
++	IKF=0.442678 ISE=1e-16 NE=4 BR=1.73115
++	NR=1.04113 VAR=135.417 IKR=1.00889 ISC=1e-16
++	NC=2.93725 RB=193.999 IRB=5.29235e-05 RBM=0.000841015
++	RE=9.44257e-05 RC=0.216999 XTB=1.16682 XTI=0.80411
++	EG=1.05 CJE=2.19516e-10 VJE=0.99 MJE=0.39332
++	TF=1.51916e-09 XTF=1.21445 VTF=11.3491 ITF=0.0098534
++	CJC=7.43909e-11 VJC=0.4 MJC=0.287382 XCJC=0.799998
++	FC=0.577401 CJS=0 VJS=0.75 MJS=0.5
++	TR=7.76174e-07 PTF=0 KF=0 AF=1)
+********Model for MJE243 Power NPN BJT (from ON Semiconductor) ends here*****
+
+******** Model for MJE253 Power PNP BJT (from ON Semiconductor) begins here*****
+.model	QMJE253 PNP(
++	IS=2.52937e-13 BF=54.36 NF=1.01478 VAF=4.91894
++	IKF=0.84154 ISE=6.32316e-13 NE=3.6001 BR=3.71504
++	NR=1.15303 VAR=49.1894 IKR=4.42705 ISC=6.32316e-13
++	NC=2.93783 RB=417.673 IRB=7.10249e-06 RBM=0.000992345
++	RE=6.68257e-05 RC=0.262081 XTB=1.32735 XTI=0.01
++	EG=1.05 CJE=1.57797e-10 VJE=0.99 MJE=0.339209
++	TF=2.58603e-09 XTF=1.5 VTF=0.999999 ITF=1
++	CJC=6.54856e-11 VJC=0.0328604 MJC=0.208693 XCJC=0.8
++	FC=0.532891 CJS=0 VJS=0.75 MJS=0.5
++	TR=7.83777e-07 PTF=0 KF=0 AF=1)
+******** Model for MJE253 Power PNP BJT (from ON Semiconductor) ends here*****
+
+******** Analysis begins here****************
+.TRAN 	0.01mS  3mS
+*.DC [LIN] V_Vin  -10 10 1m
+.PROBE
+.END
+******** Analysis ends here****************
+
+
+

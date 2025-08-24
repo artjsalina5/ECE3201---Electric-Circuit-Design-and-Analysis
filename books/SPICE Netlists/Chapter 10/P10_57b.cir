@@ -1,0 +1,37 @@
+********Problem: P10_57 (b) ***************
+******* Main circuit begins here**************
+V2         VDD 0 6.5Vdc
+RL         VO VDD  20k TC=0,0
+M2         VO VG2 VD1 0 NMOS0P5
++ L=0.5u
++ W=60u
++ M=1
+V3         VG2 0 2.8Vdc
+V1         VSIG 0  AC 10m
++SIN 0.79 10m 1k 0 0 0
+R2         VG1 VSIG  20k TC=0,0
+CGS         0 VG1  2p  TC=0,0
+CDB         0 VD1  0.2p  TC=0,0
+CGD         VD1 VG1  0.3p  TC=0,0
+M1         VD1 VG1 0 0 NMOS0P5
++ L=0.5u
++ W=60u
++ M=1
+CL         0 VO  1p  TC=0,0
+******* Main circuit ends here***************
+
+***************** NMOS model begins here ******************************
+.model NMOS0P5	NMOS(Level=1 VTO=0.7 GAMMA=0.5 PHI=0.8
++		LD=0 WD=0 UO=460 LAMBDA=0.33 TOX=9.5E-9 PB=0.9 CJ=0.57E-3
++		CJSW=120E-12 MJ=0.5 MJSW=0.4 CGDO=0.4E-9 JS=10E-9 CGBO=0.38E-9
++		CGSO=0.4E-9)
+***************** NMOS model ends here *****************************************
+
+******** Analysis begins here****************
+.OP
+.AC  DEC   20  1 100MEG
+.PROBE
+.END
+******** Analysis ends here****************
+
+

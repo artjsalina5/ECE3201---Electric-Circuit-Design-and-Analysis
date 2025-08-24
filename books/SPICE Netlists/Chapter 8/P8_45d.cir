@@ -1,0 +1,24 @@
+********Problem: P8_45(d) ***************
+******* Main circuit begins here**************
+M1         VO VI 0 0 NMOS0P13
++ L=0.4u
++ W=7u
++ M=1
+V1         VI 0  AC 10m
++SIN 0.53 2m 1k 0 0 0
+V2         VDD 0 3.05Vdc
+R1         VO VDD  24k TC=0,0
+******* Main circuit ends here***************
+
+***************** NMOS model begins here ******************************
+.model NMOS0P13	NMOS(Level=1 VTO=0.4 GAMMA=0.05 PHI=0.8
++		LD=0 WD=0 UO=400 LAMBDA=0.5 TOX=2.7E-9 PB=0.9)
+***************** NMOS model ends here *****************************************
+
+******** Analysis begins here****************
+.OP
+.TRAN 	0.01mS  2mS
+.PROBE
+.END
+******** Analysis ends here****************
+

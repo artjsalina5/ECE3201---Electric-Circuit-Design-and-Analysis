@@ -1,0 +1,33 @@
+******* Problem: P9_55 **********************
+******* Main circuit begins here**************
+V_DD         VDD 0 1.8Vdc
+RD2         VOUT2 VDD  11.88k
+Iref         VS 0 DC 200uAdc
+RSS         0 VS  100k
+RD1         VOUT1 VDD  12k
+M1         VOUT1 VIN1 VS 0 NMOS0P18
++ L=0.5u
++ W=6.5u
++ M=1
+M2         VOUT2 VIN2 VS 0 NMOS0P18
++ L=0.5u
++ W=6.5u
++ M=1
+V1         VIN1 0  AC 1m
++SIN 0.8 10m 1k 0 0 0
+V2         VIN2 0  AC 1m
++SIN 0.8 -10m 1k 0 0 0
+******* Main circuit ends here***************
+
+***************** NMOS model begins here ******************************
+.model NMOS0P18	NMOS(Level=1 VTO=0.5 GAMMA=0.3 PHI=0.84
++		LD=0 WD=0 UO=450 LAMBDA=0.02 TOX=4.08E-9 PB=0.9 CJ=1.6E-3
++		CJSW=2.04E-10 MJ=0.5 MJSW=0.2 CGDO=3.67E-10 JS=8.38E-6 CGBO=3.8E-10
++		CGSO=3.67E-10)
+***************** NMOS model ends here *****************************************
+
+******** Analysis begins here****************
+.TRAN 	0.01mS  2mS
+.PROBE
+.END
+******** Analysis ends here****************

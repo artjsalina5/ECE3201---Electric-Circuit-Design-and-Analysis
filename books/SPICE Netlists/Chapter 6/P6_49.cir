@@ -1,0 +1,14 @@
+********Problem: P6_49		***************
+******* Main circuit begins here**************
+Q1         VC VB 0 QECL
+RB         VCC VB  12.1k TC=0,0
+RC         VC VCC  1.35k TC=0,0
+V1         VCC 0 5Vdc
+******* Main circuit ends here*******************************************
+************ Model for ECL BJT begins here*******************************
+.model QECL	NPN(Is=0.26fA Bf=100 Br=1 Tf=0.1ns Cje=1pF Cjc=1.5pF Va=100)
+************ Model for ECL BJT begins here*******************************
+
+******** Analysis begins here****************
+.OP
+******** Analysis ends here****************

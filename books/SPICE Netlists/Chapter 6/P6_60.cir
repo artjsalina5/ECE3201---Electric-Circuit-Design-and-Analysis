@@ -1,0 +1,17 @@
+********Problem: P 6.60		***************
+******* Main circuit begins here**************
+Q2         VC VB VE QECL
+R1         0 VE  1k TC=0,0
+R2         VB VCC  100k TC=0,0
+R3         VC VCC  1k TC=0,0
+V_sup         VCC 0 3
+******* Main circuit ends here*******************************************
+
+************ Model for ECL BJT begins here*******************************
+.model QECL	NPN(Is=0.26fA Bf=100 Br=1 Tf=0.1ns Cje=1pF Cjc=1.5pF Va=100)
+************ Model for ECL BJT begins here*******************************
+
+******** Analysis begins here****************
+.OP
+.END
+******** Analysis ends here****************

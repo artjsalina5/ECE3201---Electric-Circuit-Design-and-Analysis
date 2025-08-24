@@ -1,0 +1,31 @@
+********Problem: P16_29        ***************
+******* Main circuit begins here**************
+M1         VO VIN 0 0 NMOS0P25
++ L=0.25u
++ W=0.375u
++ M=1
+M2         VO VIN VDD VDD PMOS0P25
++ L=0.25u
++ W={WP}
++ M=1
+V1         VDD 0 2.5Vdc
+V2         VIN 0 1Vdc
+.PARAM  wp=1.3125u
+******* Main circuit ends here**************
+
+
+***************** PMOS model begins here ******************************
+.model PMOS0P25	PMOS(Level=1 VTO=-0.5 GAMMA=0.5 PHI=0.8
++		LD=0 WD=0 UO=200 LAMBDA=0.1 TOX=6E-9 PB=0.9)
+***************** PMOS model ends here *****************************************
+
+***************** NMOS model begins here ******************************
+.model NMOS0P25	NMOS(Level=1 VTO=0.5 GAMMA=0.5 PHI=0.8
++		LD=0 WD=0 UO=700 LAMBDA=0.1 TOX=6E-9 PB=0.9)
+***************** NMOS model ends here *****************************************
+
+******** Analysis begins here****************
+.DC [LIN] V2  0 2.5 0.02
+.PROBE
+.END
+******** Analysis ends here****************

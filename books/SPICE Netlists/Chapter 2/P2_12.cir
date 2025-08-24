@@ -1,0 +1,26 @@
+********Problem: P2_12		***************
+******* Main circuit begins here**************
+R1         VIN IN-  10k
+R2         IN- OUT  20k
+V1         VIN 0
++SIN 0 10m 1000 0 0 0
+X_A1         0 IN- OUT OPAMP_MACRO
+******* Main circuit ends here **************
+
+******* Opamp macro model begins here **************
+.SUBCKT OPAMP_MACRO    IN+ IN- OUT
+Eb         N3 0 N2 0 1
+Cb         0 N2  1.1n
+VOS         N4 IN- 1m
+Ro         OUT N3  75
+Rid         IN+ N4  2MEG
+Ed         N1 0 IN+ N4 1E5
+Rb         N2 N1  16MEG
+.ENDS
+******* Opamp macro model ends here **************
+
+******** Analysis begins here****************
+.TRAN 	0.05MS  2MS
+.PROBE
+.END
+******** Analysis ends here***************

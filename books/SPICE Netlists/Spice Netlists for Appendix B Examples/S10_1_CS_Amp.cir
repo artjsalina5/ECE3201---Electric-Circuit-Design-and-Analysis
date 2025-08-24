@@ -1,0 +1,61 @@
+********Example S 10.1 CS amplifier *********
+******* Main circuit begins here**************
+M_M1         OUT IN VS1 0 NMOS0P5  
++ L=0.6u  
++ W=1.25u  
++ AD=1.72E-12  
++ AS=1.72E-12  
++ PD=5.25E-6  
++ PS=5.25E-6      
++ M={M1}
+I_I1         VG23 0 DC {Iref}  
+I_I2         VS1 0 DC {Iref}  
+V_V1         VDD 0 {VDD}
+R_R1         VSIG IN  {Rsig} TC=0,0 
+C_C1         0 OUT  {Cload}  TC=0,0 
+C_C2         0 VS1  {CS}  TC=0,0 
+M_M3         VG23 VG23 VDD VDD PMOS0P5  
++ L=0.6u  
++ W=5u  
++ AD=1.72E-12  
++ AS=1.72E-12  
++ PD=5.25e-6  
++ PS=5.25E-6      
++ M={M}
+M_M2         OUT VG23 VDD VDD PMOS0P5  
++ L=0.6u  
++ W=5u  
++ AD=1.72E-12  
++ AS=1.72E-12  
++ PD=5.25e-6  
++ PS=5.25E-6      
++ M={M}
+V_V2         VSIG 0  AC 1Vac
++SIN 2.45Vdc 1 1k 0 0 0
+.PARAM  iref=100u cs=1 m=4 vdd=3.3 cload=0.5p rsig=100 m1=18
+******* Main circuit ends here**************
+
+************Model for NMOS in 0.5um CMOS Technology begins here*****************
+* 		(created by Anas Hamoui & Olivier Trescases)
+.model NMOS0P5	NMOS(Level=1 VTO=0.7 GAMMA=0.5 PHI=0.8
++		LD=0.08E-06 WD=0 UO=460 LAMBDA=0.1 TOX=9.5E-9 PB=0.9 CJ=0.57E-3
++		CJSW=120E-12 MJ=0.5 MJSW=0.4 CGDO=0.4E-9 JS=10E-9 CGBO=0.38E-9
++		CGSO=0.4E-9)
+************Model for NMOS in 0.5um CMOS Technology ends here*****************
+
+************Model for PMOS in 0.5um CMOS Technology begins here*****************
+* 		(created by Anas Hamoui & Olivier Trescases)
+.model PMOS0P5	PMOS(Level=1 VTO=-0.8 GAMMA=0.45 PHI=0.8
++		LD=0.09E-06 WD=0 UO=115 LAMBDA=0.2 TOX=9.5E-9 PB=0.9 CJ=0.93E-3
++		CJSW=170E-12 MJ=0.5 MJSW=0.35 CGDO=0.35E-9 JS=5E-9 CGBO=0.38E-9
++		CGSO=0.35E-9)
+************Model for PMOS in 0.5um CMOS Technology ends here*****************
+
+******** Analysis begins here****************
+.OP
+.AC  DEC   20  1 1G
+.PROBE
+.END
+******** Analysis ends here****************
+
+

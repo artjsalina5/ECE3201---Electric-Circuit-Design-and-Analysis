@@ -1,0 +1,26 @@
+********Problem: P7_31		***************
+******* Main circuit begins here**************
+M1         VD VG 0 0 NMOS0P18
++ L=0.5u
++ W=12u
++ M=1
+V2         VDD 0 1Vdc
+I1         VDD VD DC 200u
+R1         VG VD  22MEG TC=0,0
+R2         0 VO  15k TC=0,0
+C1         VD VO  1  TC=0,0
+C2         VI VG  1  TC=0,0
+V3         VI 0  AC 1
++SIN 0 10m 1k 0 0 0
+******* Main circuit ends here**********************************************
+***************** NMOS model begins here *****************************************
+.model NMOS0P18	NMOS(Level=1 VTO=0.8 GAMMA=0.3 PHI=0.84
++		LD=0 WD=0 UO=450 LAMBDA=0.05 TOX=4.08E-9 PB=0.9)
+***************** NMOS model ends here *****************************************
+
+******** Analysis begins here****************
+.OP
+.AC  DEC   40  10 1K
+.PROBE
+.END
+******** Analysis ends here****************

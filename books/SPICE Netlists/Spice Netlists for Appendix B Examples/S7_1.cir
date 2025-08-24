@@ -1,0 +1,39 @@
+********Example S 7.1 ***************
+******* Main circuit begins here**************
+M2         VD VG VS VS NMOS0P5  
++ L={L}  
++ W={W}  
++ AD=1.72E-12  
++ AS=1.72E-12  
++ PD=5.25E-6  
++ PS=5.25E-6      
++ M=1
+R11         VG VDD  {RG1}  
+R16         0 VS  {RS}  
+R15         0 VG  {RG2}  
+R12         VD VDD  {RD}  
+C6         0 VS  {CS}  
+C4         VD OUT  {CCO}  
+R14         IN N1  {Rsig}  
+C5         N1 VG  {CCI}  
+R13         0 OUT  {RL}  
+V3         IN 0 DC 0Vdc AC 1Vac 
+V1         VDD 0 {VDD}
+.PARAM  RS=630 CS=10u L=0.6u CCO=10u VDD=3.3 CCI=10u RG1=2e6 RL=50k RG2=1.3e6
++  RSIG=10k W=22u RD=4.2k
+******* Main circuit ends here**************
+
+*************Model for NMOS in 0.5um CMOS Technology begins here******************************
+* 		(created by Anas Hamoui & Olivier Trescases)
+.model NMOS0P5	NMOS(Level=1 VTO=0.7 GAMMA=0.5 PHI=0.8 
++		LD=0.08E-06 WD=0 UO=460 LAMBDA=0.1 TOX=9.5E-9 PB=0.9 CJ=0.57E-3 
++		CJSW=120E-12 MJ=0.5 MJSW=0.4 CGDO=0.4E-9 JS=10E-9 CGBO=0.38E-9
++		CGSO=0.4E-9)
+*************Model for NMOS in 0.5um CMOS Technology ends here******************************
+
+******** Analysis begins here****************
+.OP
+.AC  DEC   20  10m 10G
+.PROBE
+.END
+******** Analysis ends here****************

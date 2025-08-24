@@ -1,0 +1,60 @@
+********Example S 7.3  ***********************
+******* Main circuit begins here**************
+R_RG1         VIN VDD  852.5k TC=0,0 
+R_RG2         0 VIN  947.5k TC=0,0 
+M_M1         VD VIN VS 0 NMOS4  
++ L=0.2u  
++ W=15.48u  
++ AD=1.72E-12  
++ AS=1.72E-12  
++ PD=5.25E-6  
++ PS=5.25E-6      
++ M=1
+R_RD         VD VDD  3.41k TC=0,0 
+R_RS         0 VS  1.39k TC=0,0 
+R_RL         0 VOUT  50k TC=0,0 
+C_CCO         VD VOUT  10u  TC=0,0 
+C_CS         0 VS  10u  TC=0,0 
+C_CCI         N1 VIN  10u  TC=0,0 
+V_V1         VSIG 0  AC 1Vac
++SIN 0 1m 1k 0 0 0
+R_RSIG         N1 VSIG  10k TC=0,0 
+V_V2         VDD 0 1.8Vdc
+******* Main circuit ends here**************
+
+*****************NMOS models begin here*********************
+.model NMOS4	NMOS(LEVEL= 1 VTO=0.45 GAMMA= 0.3  PHI=0.84
++ LAMBDA= 0.08
++ RS=    0.0
++ RD=    0.0
++ CBD=   0.0
++ CBS=   0.0
++ IS=    1.0e-14
++ PB=    0.9
++ CGSO=  0.3665e-9
++ CGDO=   0.3665e-9
++ CGBO=   0.38e-9
++ RSH=   0
++ CJ=    1.6e-3
++ MJ=    0.5
++ CJSW=  2.0405e-10
++ MJSW=  0.200379
++ JS=    8.38e-6
++ TOX= 4.08e-09
++ NSS=   0.0
++ TPG=   1.0
++ LD=    10e-9
++ U0 = 291
++ KF=    0.0
++ AF=    1.0
++ FC=    0.5
++ TNOM=  27
++ )
+*****************NMOS models end here*********************
+
+******** Analysis begins here****************
+.OP
+.TRAN 0.01m 2.5m
+.PROBE
+.END
+******** Analysis ends here****************

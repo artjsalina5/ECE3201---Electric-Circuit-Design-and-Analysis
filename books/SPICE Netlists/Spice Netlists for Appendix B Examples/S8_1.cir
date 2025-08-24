@@ -1,0 +1,54 @@
+********Example S 8.1 ***************
+******* Main circuit begins here**************
+M1         OUT IN 0 0 NMOS5P0  
++ L=6u  
++ W={W}  
++ AD=1.72E-12  
++ AS=1.72E-12  
++ PD=5.25E-6  
++ PS=5.25E-6      
++ M={M1}
+V2         VDD 0 {VDD}
+M3         VG23 VG23 VDD VDD PMOS5P0  
++ L=6u  
++ W=37.5u  
++ AD=1.72E-10  
++ AS=1.72E-10  
++ PD=5.25e-5  
++ PS=5.25E-5      
++ M={M}
+I2         VG23 0 DC {Iref}  
+V_Vin         IN 0 DC 1.5Vdc AC 1Vac 
+M2         OUT VG23 VDD VDD PMOS5P0  
++ L=6u  
++ W=37.5u  
++ AD=1.72E-10  
++ AS=1.72E-10  
++ PD=5.25e-5  
++ PS=5.25E-5      
++ M={M}
+.PARAM  iref=100u m=2 vdd=10 m1=10 w=12.5u
+******* Main circuit ends here**************
+***************Model for NMOS in 5um CMOS Technology begins here*********************
+*		(created by Anas Hamoui & Olivier Trescases)
+.model NMOS5P0	NMOS(Level=1 VTO=1 GAMMA=1.4 PHI=0.7
++		LD=0.7E-06 WD=0 UO=750 LAMBDA=0.01 TOX=85E-9 PB=0.7 CJ=0.4E-3
++		CJSW=0.8E-9 MJ=0.5 MJSW=0.5 CGDO=0.4E-9 JS=1E-6 CGBO=0.2E-9
++		CGSO=0.4E-9)
+***************Model for NMOS in 5um CMOS Technology ends here*********************
+***************Model for PMOS in 5um CMOS Technology begins here*********************
+*		(created by Anas Hamoui & Olivier Trescases)
+.model PMOS5P0	PMOS(Level=1 VTO=-1 GAMMA=0.65 PHI=0.65
++		LD=0.6E-06 WD=0 UO=250 LAMBDA=0.03 TOX=85E-9 PB=0.7 CJ=0.18E-3
++		CJSW=0.6E-9 MJ=0.5 MJSW=0.5 CGDO=0.4E-9 JS=1E-6 CGBO=0.2E-9
++		CGSO=0.4E-9)
+***************Model for PMOS in 5um CMOS Technology ends here*********************
+
+******** Analysis begins here****************
+.DC [LIN] V_Vin  0 10 0.05
+.PROBE
+.END
+******** Analysis ends here****************
+
+
+?

@@ -1,0 +1,32 @@
+********Problem: P17_8        ***************
+******* Main circuit begins here**************
+M1         VO VIN 0 0 NMOS0P065
++ L=65n
++ W=130n
++ M=1
+M2         VO VIN VDD VDD PMOS0P065
++ L=65n
++ W=260n
++ M=1
+V1         VDD 0 1Vdc
+V2         VIN 0
++PULSE 1 0 0.25n 0.001n 0.001n 0.5n
+C1         0 VO  4f
+******* Main circuit ends here**************
+
+
+***************** 65 nm PMOS model begins here ******************************
+.model PMOS0P065	PMOS(Level=1 VTO=-0.35 GAMMA=0.045 PHI=0.8
++		LD=0 WD=0 UO=51 LAMBDA=0.278 TOX=1.4E-9 PB=0.9)
+***************** 65 nm PMOS model ends here *****************************************
+
+***************** 65 nm NMOS model begins here ******************************
+.model NMOS0P065	NMOS(Level=1 VTO=0.35 GAMMA=0.05 PHI=0.8
++		LD=0 WD=0 UO=202 LAMBDA=0.278 TOX=1.4E-9 PB=0.9)
+***************** 65 nm NMOS model ends here *****************************************
+
+******** Analysis begins here****************
+.TRAN 0.001nS 1.25ns
+.PROBE
+.END
+******** Analysis ends here****************

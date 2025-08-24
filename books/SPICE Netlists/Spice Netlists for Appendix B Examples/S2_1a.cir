@@ -1,0 +1,9 @@
+.SUBCKT OPAMP_MACRO    IN+ IN- OUT
+Ro         OUT N3  75
+VOS         N4 IN- 1m
+Eb         N3 0 N2 0 1
+Rb         N2 N1  16MEG
+Cb         0 N2  1n
+Ed         N1 0 IN+ N4 1E5
+Rid         IN+ N4  2MEG
+.ENDS

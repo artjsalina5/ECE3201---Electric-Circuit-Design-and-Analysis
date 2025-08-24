@@ -1,0 +1,37 @@
+********Problem: P8_45(a,b,c) ***************
+******* Main circuit begins here**************
+M1         VO VI 0 0 NMOS0P13
++ L=0.4u
++ W=7u
++ M=1
+M2         VO VG23 VDD VDD PMOS0P13
++ L=0.4u
++ W=27.7u
++ M=1
+M3         VG23 VG23 VDD VDD PMOS0P13
++ L=0.4u
++ W=27.7u
++ M=1
+I1         VG23 0 DC 100uAdc
+V1         VI 0  AC 10m
++SIN 0.53 2m 1k 0 0 0
+V2         VDD 0 1.3Vdc
+******* Main circuit ends here***************
+
+***************** PMOS model begins here ******************************
+.model PMOS0P13	PMOS(Level=1 VTO=-0.4 GAMMA=0.045 PHI=0.8
++		LD=0 WD=0 UO=100 LAMBDA=0.42 TOX=2.7E-9 PB=0.9)
+
+***************** PMOS model ends here *****************************************
+
+***************** NMOS model begins here ******************************
+.model NMOS0P13	NMOS(Level=1 VTO=0.4 GAMMA=0.05 PHI=0.8
++		LD=0 WD=0 UO=400 LAMBDA=0.5 TOX=2.7E-9 PB=0.9)
+***************** NMOS model ends here *****************************************
+
+******** Analysis begins here****************
+.OP
+.TRAN 	0.01mS  2mS
+.PROBE
+.END
+******** Analysis ends here****************

@@ -1,0 +1,34 @@
+********Problem: P12_39 ***************
+******* Main circuit begins here**************
+R1         N2 VDD  500k TC=0,0
+R2         VC N2  100k TC=0,0
+I1         VC VSS DC 1mAdc
+C1         N1 N2  1  TC=0,0
+V1         N1 0  AC 10m
++SIN 0 1m 1k 0 0 0
+V2         VDD 0 10Vdc
+V3         0 VSS 10Vdc
+Q1         N3 N2 0 QPNP
+Q2         0 N3 VC QNPN
+******* Main circuit ends here***************
+***************** Q2N3906 model begins here ******************************
+.model QPNP	PNP(Is=1.41f Xti=3 Eg=1.11 Vaf=100 Bf=10 Ne=1.5 Ise=0
++		Ikf=80m Xtb=1.5 Br=4.977 Nc=2 Isc=0 Ikr=0 Rc=2.5 Cjc=9.728p
++		Mjc=.5776 Vjc=.7 Fc=.5 Cje=8.063p Mje=.3677 Vje=.7 Tr=33.42n
++		Tf=179.3p Itf=.4 Vtf=4 Xtf=6 Rb=10)
+***************** Q2N3906 model ends here ******************************
+
+***************** Q2N3904 model begins here ******************************
+.model QNPN	NPN(Is=6.734f Xti=3 Eg=1.11 Vaf=100 Bf=100 Ne=1.259
++		Ise=6.734f Ikf=66.78m Xtb=1.5 Br=.7371 Nc=2 Isc=0 Ikr=0 Rc=1
++		Cjc=3.638p Mjc=.3085 Vjc=.7 Fc=.5 Cje=4.493p Mje=.2593 Vje=.7
++		Tr=239.5n Tf=301.2p Itf=.4 Vtf=4 Xtf=2 Rb=10)
+***************** Q2N3904 model ends here ******************************
+
+******** Analysis begins here***************
+.OP
+*.TRAN 	10uS  2mS
+*.AC  DEC   20  1 10K
+.PROBE
+.END
+******** Analysis ends here****************

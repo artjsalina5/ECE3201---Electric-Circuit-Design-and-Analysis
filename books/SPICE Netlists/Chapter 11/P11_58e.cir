@@ -1,0 +1,51 @@
+********Problem: P11_58 (e)***************
+******* Main circuit begins here*************
+M1         VD1 VG1 VS12 0 NMOS0P5
++ L=0.5u
++ W=14u
++ M=1
+M2         VD2 OUT VS12 0 NMOS0P5
++ L=0.5u
++ W=14u
++ M=1
+M3         VD1 VD1 VDD VDD PMOS0P5
++ L=0.5u
++ W=55u
++ M=1
+M4         VD2 VD1 VDD VDD PMOS0P5
++ L=0.5u
++ W=55u
++ M=1
+I1         VS12 VSS DC 0.2mAdc
+M5         N16841 VD2 OUT 0 NMOS0P5
++ L=0.5u
++ W=105u
++ M=1
+I2         OUT VSS DC 0.8mAdc
+V1         VDD 0 1.2Vdc
+V2         0 VSS 1.2Vdc
+VS         VIN 0  AC 1Vac
++SIN 0 10m 1k 0 0 0
+R1         0 OUT  10k TC=0,0
+R2         VG1 VIN  10k TC=0,0
+V3         N16841 0 1.2Vdc
+I3         OUT 0 DC 0Adc AC 0
++SIN 0 0 1 0 0 0
+******* Main circuit ends here***************
+
+***************** PMOS model begins here ******************************
+.model PMOS0P5	PMOS(Level=1 VTO=-0.4 GAMMA=0.05 PHI=0.8
++		LD=0 WD=0 UO=115 LAMBDA=0.05 TOX=9.5E-9 PB=0.9)
+***************** PMOS model ends here *****************************************
+
+***************** NMOS model begins here ******************************
+.model NMOS0P5	NMOS(Level=1 VTO=0.4 GAMMA=0.05 PHI=0.8
++		LD=0 WD=0 UO=460 LAMBDA=0.05 TOX=9.5E-9 PB=0.9)
+***************** NMOS model ends here *****************************************
+
+******** Analysis begins here****************
+.AC  DEC   20  1 100K
+.PROBE
+.END
+******** Analysis ends here****************
+

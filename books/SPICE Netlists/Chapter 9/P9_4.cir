@@ -1,0 +1,31 @@
+********Problem: P9_4		***************
+******* Main circuit begins here**************
+M1         VD1 VG1 VS VDD PMOS0P18
++ L=0.5u
++ W=29u
++ M=1
+M2         VD2 0 VS VDD PMOS0P18
++ L=0.5u
++ W=29u
++ M=1
+R1         VSS VD1  4k TC=0,0
+R2         VSS VD2  4k TC=0,0
+I1         VDD VS DC 0.2mAdc
+V1         VDD 0 0.9Vdc
+V2         VG1 0 0.25Vdc
+V3         0 VSS 0.9Vdc
+******* Main circuit ends here**********************************************
+
+***************** PMOS model (0.18um) begins here ******************************
+.model PMOS0P18	PMOS(Level=1 VTO=-0.4 GAMMA=0.3 PHI=0.8
++		LD=0 WD=0 UO=102 LAMBDA=0.17 TOX=4.08E-9 PB=0.9 CJ=1E-3
++		CJSW=2.04E-10 MJ=0.45 MJSW=0.29 CGDO=3.43E-10 JS=4.0E-7 CGBO=3.5E-10
++		CGSO=3.43E-10)
+***************** PMOS model ends here *****************************************
+
+******** Analysis begins here****************
+.OP
+.DC [LIN] V2  -0.4 0.4 0.02
+.PROBE
+.END
+******** Analysis ends here****************

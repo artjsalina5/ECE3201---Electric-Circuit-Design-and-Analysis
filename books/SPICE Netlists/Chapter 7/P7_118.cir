@@ -1,0 +1,56 @@
+********Problem: P7_118		***************
+******* Main circuit begins here**************
+M1         VD1 VG1 VS1 0 NMOS0P5
++ L=0.5u
++ W=18u
++ M=1
+RD         VD1 VDD  10k TC=0,0
+RG1         VG1 VDD  750k TC=0,0
+RG2         0 VG1  500k TC=0,0
+RS         0 VS1  4k TC=0,0
+V1         VDD 0 5Vdc
+V2         VSIG 0  AC 1Vac
++SIN 0 {VSIG} 1k 0 0 0
+R_RSIG         VSIG N1  100k TC=0,0
+CC1         N1 VG1  1  TC=0,0
+R_RL         0 VO  10k TC=0,0
+CC2         VD1 VO  1  TC=0,0
+CS         VS1 N2  100u  TC=0,0
+R         0 N2  {R} TC=0,0
+.PARAM  VSIG=10m R=1m
+******* Main circuit ends here**************
+
+***************** NMOS model begins here ******************************
+.model NMOS0P5	NMOS(Level=1 VTO=0.75 GAMMA=0.05 PHI=0.8
++		LD=0 WD=0 UO=460 LAMBDA=0.02 TOX=9.5E-9 PB=0.9 CJ=0.57E-3
++		CJSW=120E-12 MJ=0.5 MJSW=0.4 CGDO=0.4E-9 JS=10E-9 CGBO=0.38E-9
++		CGSO=0.4E-9)
+***************** NMOS model ends here *****************************************
+
+******** Analysis begins here****************
+
+******Part (a)*********
+.op
+**********************
+
+******Part (b) *********
+*.AC  DEC   40  10 100K
+*.PROBE
+*.END
+**********************
+
+******Part (c)*********
+*.TRAN 	0.01mS  2mS
+*.STEP LIN PARAM vsig 100m 200m 10m
+*.PROBE
+*.END
+**********************
+
+******Part (d)*********
+*.TRAN 	0.01mS  2mS
+*.STEP LIN PARAM R 1m 1k 100
+*.PROBE
+*.END
+**********************
+
+******** Analysis ends here****************

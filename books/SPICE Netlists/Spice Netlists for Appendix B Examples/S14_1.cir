@@ -1,0 +1,46 @@
+********Example S 14.1 ***************
+******* Main circuit begins here**************
+R_R8         N8 N9  {R32}
+C_C5         OUT N13  {C13}
+R_R3         N3 N4  {R21}
+V_Vin         IN 0 DC 0Vdc AC 1Vac
+R_R11         OUT N13  {R23}
+R_R5         0 N5  {R61}
+R_R7         N9 N10  {R22}
+R_R4         N4 N5  {R11}
+R_R6         N10 N11  {R12}
+C_C1         N1 N2  {C41}
+C_C3         N7 N8  {C42}
+E_LAPLACE1         ABM_OUT 0 LAPLACE {V(IN)}
++ {(9.793E23)/(8.141*PWRS(s,5)+4.792E5*PWRS(s,4)+5.428E10*PWRS(s,3)+1.968E15*PWRS(s,2)+7.366E19*s+9.792E23)}
+R_R1         IN N1  {R51}
+C_C4         0 N11  {C62}
+R_R9         N6 N7  {R52}
+R_R2         N2 N3  {R31}
+R_R10         0 N11  {R62}
+R_R12         N13 N12  {R13}
+C_C2         0 N5  {C61}
+X_A11		 N3 N1 N4 OPAMP_MACRO
+X_A31		 N6 N5 N6 OPAMP_MACRO
+X_A21		 N3 N5 N2 OPAMP_MACRO
+X_A12		 N9 N7 N10 OPAMP_MACRO
+X_A32		 N12 N11 N12 OPAMP_MACRO
+X_A22		 N9 N11 N8 OPAMP_MACRO
+X_A13 		 N13 0 OUT OPAMP_MACRO
+
+.PARAM  c41=2.43n c42=1.6n r62=55.6k r23=10k r61=14k r22=10k r21=10k r31=10k
++  r52=10k r32=10k c62=1.6n r51=10k r12=10k c13=5.5n c61=2.43n r13=10k r11=10k
+******* Main circuit ends here **************
+
+******* Opamp macro model begins here **************
+.SUBCKT OPAMP_MACRO    IN- IN+ OUT
+E_E1         OUT 0 IN+ IN- 10E6
+.ENDS
+******* Opamp macro model ends here **************
+
+******** Analysis begins here****************
+.AC  DEC   100  0.1 20K
+.PROBE
+.END
+******** Analysis ends here****************
+

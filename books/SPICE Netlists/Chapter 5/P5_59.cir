@@ -1,0 +1,34 @@
+********Problem: P5_59		***************
+******* Main circuit begins here**************
+V_sup         VCC 0 2
+M4         VCC VCC V2 V2 NMOS0P5
++ L=0.5u
++ W=0.5u
++ M=1
+M1         V1 V1 0 0 NMOS0P5
++ L=0.5u
++ W=0.5u
++ M=1
+M2         VCC VCC V1 V1 NMOS0P5
++ L=0.5u
++ W=0.5u
++ M=1
+M3         V2 V1 0 0 NMOS0P5
++ L=0.5u
++ W=0.5u
++ M=1
+******* Main circuit ends here**********************************************
+
+***************** NMOS model begins here *****************************************
+.model NMOS0P5	NMOS(Level=1 VTO=0.5 GAMMA=0.5 PHI=0.8
++		LD=0 WD=0 UO=1100 LAMBDA=0.00001 TOX=9.5E-9 PB=0.9 CJ=0.57E-3
++		CJSW=120E-12 MJ=0.5 MJSW=0.4 CGDO=0.4E-9 JS=10E-9 CGBO=0.38E-9
++		CGSO=0.4E-9)
+
+***************** NMOS model ends here *****************************************
+
+
+******** Analysis begins here****************
+.OP
+.END
+******** Analysis ends here****************

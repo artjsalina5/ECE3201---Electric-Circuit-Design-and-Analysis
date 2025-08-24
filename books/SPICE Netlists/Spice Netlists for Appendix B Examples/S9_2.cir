@@ -1,0 +1,93 @@
+********Example S 9.2 ***********************
+******* Main circuit begins here**************
+M_M4         VD2 VD1 VDD VDD PMOS4  
++ L=0.2u  
++ W=0.64u  
++ AD=1.72E-12  
++ AS=1.72E-12  
++ PD=5.25e-6  
++ PS=5.25E-6      
++ M=14
+M_M3         VD1 VD1 VDD VDD PMOS4  
++ L=0.2u  
++ W=0.64u  
++ AD=1.72E-12  
++ AS=1.72E-12  
++ PD=5.25e-6  
++ PS=5.25E-6      
++ M=14
+M_M1         VD1 IN- VD5 0 NMOS4  
++ L=0.2u  
++ W=0.48u  
++ AD=1.72E-12  
++ AS=1.72E-12  
++ PD=5.25E-6  
++ PS=5.25E-6      
++ M=6
+M_M2         VD2 IN+ VD5 0 NMOS4  
++ L=0.2u  
++ W=0.48u  
++ AD=1.72E-12  
++ AS=1.72E-12  
++ PD=5.25E-6  
++ PS=5.25E-6      
++ M=6
+M_M5         VD5 VG5 VSS 0 NMOS4  
++ L=0.2u  
++ W=0.48u  
++ AD=1.72E-12  
++ AS=1.72E-12  
++ PD=5.25E-6  
++ PS=5.25E-6      
++ M=13
+M_M7         VOUT VG5 VSS 0 NMOS4  
++ L=0.2u  
++ W=0.48u  
++ AD=1.72E-12  
++ AS=1.72E-12  
++ PD=5.25E-6  
++ PS=5.25E-6      
++ M=13
+M_M6         VOUT VD2 VDD VDD PMOS4  
++ L=0.2u  
++ W=0.64u  
++ AD=1.72E-12  
++ AS=1.72E-12  
++ PD=5.25e-6  
++ PS=5.25E-6      
++ M=26
+M_M8         VG5 VG5 VSS 0 NMOS4  
++ L=0.2u  
++ W=0.48u  
++ AD=1.72E-12  
++ AS=1.72E-12  
++ PD=5.25E-6  
++ PS=5.25E-6      
++ M=13
+I_I1         VDD VG5 DC 200uAdc  
+V_V2         0 VSS 1Vdc
+V_V1         VICM 0 0Vdc
+V_V3         VDD 0 1Vdc
+V_V4         IN+ VICM  AC 1Vac
++SIN 0 1m 1k 0 0 0
+V_V5         IN- VICM  AC -1Vac
++SIN 0 1m 1k 0 0 0
+******* Main circuit ends here**************
+*****************PMOS and NMOS models begin here*********************
+.model PMOS4	PMOS(Level=1 VTO=-0.5 GAMMA=0.3 PHI=0.8 
++		LD=0.01E-06 WD=0 UO=132 LAMBDA=0.11 TOX=5E-9 PB=0.9 CJ=0.93E-3 
++		CJSW=170E-12 MJ=0.5 MJSW=0.35 CGDO=0.35E-9 JS=5E-9 CGBO=0.38E-9
++		CGSO=0.35E-9)
+.model NMOS4	NMOS(Level=1 VTO=0.5 GAMMA=0.3 PHI=0.8 
++		LD=0.01E-06 WD=0 UO=370 LAMBDA=0.08 TOX=5E-9 PB=0.9 CJ=0.57E-3 
++		CJSW=120E-12 MJ=0.5 MJSW=0.4 CGDO=0.4E-9 JS=10E-9 CGBO=0.38E-9
++		CGSO=0.4E-9)
+*****************PMOS and NMOS models end here*********************
+******** Analysis begins here****************
+.DC [LIN] V_V1  -1.0 1.0 100m
+*.AC  DEC   20  1 10K
+*.DC LIN V_V5 -750u 400u 20u
+
+.PROBE
+.END
+******** Analysis ends here****************

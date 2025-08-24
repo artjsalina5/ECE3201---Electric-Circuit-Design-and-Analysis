@@ -1,0 +1,17 @@
+********Problem: P2_111	***************
+******* Main circuit begins here**************
+E1         N2 0 0 IN- 10000
+E2         OUT 0 N1 0 1
+R1         N2 N1  1k TC=0,0
+C1         0 N1  15.92n  TC=0,0
+R2         IN- OUT  50k TC=0,0
+R3         VIN IN-  1k TC=0,0
+V1         VIN 0  AC 1
++SIN 0 10m 10k 0 0 0
+******* Main circuit ends here **************
+
+******** Analysis begins here****************
+.AC  DEC   20  10 100G
+.PROBE
+.END
+******** Analysis ends here****************

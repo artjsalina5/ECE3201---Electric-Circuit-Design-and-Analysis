@@ -1,0 +1,44 @@
+********Problem: P7_119		***************
+******* Main circuit begins here**************
+RSIG         VG VSIG  1k
+V_DD         VDD 0 2.5Vdc
+RD         VD VSS  3k
+RS         VDD VS  3k
+V1         VSIG 0  AC 1
++SIN 0 {VSIG} 1K 0 0 0
+C1         VS 0  100u
+V_DD1         0 VSS 2.5Vdc
+M1         VD VG VS VDD PMOS0P5
++ L=0.5u
++ W=150u
++ M=1
+.PARAM  vsig=50m
+
+******* Main circuit ends here********************
+***************** NMOS model begins here ********************
+.model PMOS0P5	PMOS(Level=1 VTO=-0.75 GAMMA=0.045 PHI=0.8
++		LD=0 WD=0 UO=150 LAMBDA=0.002 TOX=9.5E-9 PB=0.9 CJ=0.93E-3
++		CJSW=170E-12 MJ=0.5 MJSW=0.35 CGDO=0.35E-9 JS=5E-9 CGBO=0.38E-9
++		CGSO=0.35E-9)
+
+***************** NMOS model ends here **********************
+
+******** Analysis begins here****************
+******Part (a)*********
+.op
+**********************
+
+******Part (b) and part (d)*********
+*.TRAN 	0.01mS  2mS
+*.PROBE
+*.END
+**********************
+
+******Part (c)*********
+*.TRAN 	0.01mS  2mS
+*.STEP LIN PARAM vsig 60m 200m 20m
+*.PROBE
+*.END
+**********************
+
+******** Analysis ends here******************

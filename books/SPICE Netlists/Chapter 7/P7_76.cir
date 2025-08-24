@@ -1,0 +1,31 @@
+********Problem: P7_76		***************
+******* Main circuit begins here**************
+
+RC         VCC VC  10k
+RE         VE 0  0.01
+RL         0 VOUT  400k
+CC2         VC VOUT  1
+V_CC         VCC 0 20Vdc
+R1         VB VCC  540k
+R2         0 VB  30k
+C1         VX VB  1
+V1         VS 0  AC 1
++SIN 0 20m 1k 0 0 0
+R3         VS VX  10k
+Q1         VC VB VE Q2N3904
+******* Main circuit ends here**********************************************
+
+**************Model for 2N3904 NPN BJT (from Eval library in Pspice)**********
+.model Q2N3904	NPN(Is=6.734f Xti=3 Eg=1.11 Vaf=74.03 Bf=100 Ne=1.259
++		Ise=6.734f Ikf=66.78m Xtb=1.5 Br=.7371 Nc=2 Isc=0 Ikr=0 Rc=1
++		Cjc=3.638p Mjc=.3085 Vjc=.75 Fc=.5 Cje=4.493p Mje=.2593 Vje=.75
++		Tr=239.5n Tf=301.2p Itf=.4 Vtf=4 Xtf=2 Rb=10)
+****************Model for 2N3904 NPN BJT
+
+******** Analysis begins here****************
+.OP
+.Tran 0.01mS 2mS
+.Probe
+.end
+******** Analysis ends here****************
+

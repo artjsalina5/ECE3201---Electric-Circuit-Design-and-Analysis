@@ -1,0 +1,24 @@
+********Problem: P7_96		***************
+******* Main circuit begins here**************
+RG2         0 VG  1MEG
+V_DD         VDD 0 10Vdc
+RS         VS 0  2k
+RD         VDD VD  5k
+RG1         VDD VG  1MEG
+M1         VD VG VS 0 NMOS0P5
++ L=0.5u
++ W=14u
++ M=1
+******* Main circuit ends here*******************************
+
+
+***************** NMOS model begins here ********************
+.model NMOS0P5	NMOS(Level=1 VTO=2.0 GAMMA=0.05 PHI=0.8
++		LD=0 WD=0 UO=196 LAMBDA=0 TOX=9.5E-9 PB=0.9 CJ=0.57E-3
++		CJSW=120E-12 MJ=0.5 MJSW=0.4 CGDO=0.4E-9 JS=10E-9 CGBO=0.38E-9
++		CGSO=0.4E-9)
+***************** NMOS model ends here **********************
+
+******** Analysis begins here****************
+.op
+******** Analysis ends here******************

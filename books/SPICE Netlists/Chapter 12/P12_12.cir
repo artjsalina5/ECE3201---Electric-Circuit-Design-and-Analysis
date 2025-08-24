@@ -1,0 +1,36 @@
+********Problem: P12_12 ***************
+******* Main circuit begins here**************
+V_DD         VDD 0 5Vdc
+V1         VIN 0
++SIN 0 5 10k 0 0 0
+R1         0 VO  {RL}
+V_SS         0 VSS 5Vdc
+M2         VSS VIN VO VO PMOS0P5
++ L=0.5u
++ W=10u
++ M=1
+M1         VDD VIN VO VO NMOS0P5
++ L=0.5u
++ W=5u
++ M=1
+.PARAM  rl=1MEG
+******* Main circuit ends here***************
+
+***************** NMOS and PMOS models begins here ******************************
+.model NMOS0P5	NMOS(Level=1 VTO=0.5 GAMMA=0.5 PHI=0.8
++		LD=0 WD=0 UO=550 LAMBDA=0 TOX=9.5E-9 PB=0.9 CJ=0.57E-3
++		CJSW=120E-12 MJ=0.5 MJSW=0.4 CGDO=0.4E-9 JS=10E-9 CGBO=0.38E-9
++		CGSO=0.4E-9)
+
+.model PMOS0P5	PMOS(Level=1 VTO=-0.5 GAMMA=0.45 PHI=0.8
++		LD=0 WD=0 UO=275 LAMBDA=0 TOX=9.5E-9 PB=0.9 CJ=0.93E-3
++		CJSW=170E-12 MJ=0.5 MJSW=0.35 CGDO=0.35E-9 JS=5E-9 CGBO=0.38E-9
++		CGSO=0.35E-9)
+***************** NMOS and PMOS model ends here ******************************
+
+******** Analysis begins here***************
+.TRAN 	10uS  0.15mS
+*.STEP 	LIN		PARAM 	RL 		500 	700	 50
+.PROBE
+.END
+******** Analysis ends here****************

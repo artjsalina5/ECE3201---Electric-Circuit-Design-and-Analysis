@@ -1,0 +1,54 @@
+********Problem: P11_37(e) ***************
+******* Main circuit begins here**************
+V_DD         VDD 0 1Vdc
+I3         VO VSS DC 100uAdc
+I2         VD4 VSS DC 300uAdc
+I1         VS12 VSS DC 200uAdc
+V_SS         0 VSS 1Vdc
+M1         VD1 VSIG VS12 0 NMOS0P18
++ L=0.36u
++ W=8u
++ M=1
+M2         VDD VO VS12 0 NMOS0P18
++ L=0.36u
++ W=8u
++ M=1
+M3         VD1 VD1 VDD VDD PMOS0P18
++ L=0.36u
++ W=32u
++ M=1
+M4         VD4 VD1 VDD VDD PMOS0P18
++ L=0.36u
++ W=96u
++ M=1
+M5         VDD VD4 VO 0 NMOS0P18
++ L=0.36u
++ W=8u
++ M=1
+V1         VSIG 0  AC 0
++SIN 0 10m 1k 0 0 0
+I4         VO 0 DC 0Adc AC 1Aac
++SIN 0 0 1k 0 0 0
+
+
+******* Main circuit ends here***************
+
+***************** PMOS model begins here ******************************
+* 		Level-1 Model for PMOS in model 0.18um CMOS Technology
+.model PMOS0P18	PMOS(Level=1 VTO=-0.35 GAMMA=0.3 PHI=0.8
++		LD=0 WD=0 UO=118 LAMBDA=0.28 TOX=4.08E-9 PB=0.9)
+***************** PMOS model ends here *****************************************
+
+***************** NMOS model begins here ******************************
+* 		Level-1 Model for NMOS in model 0.18um CMOS Technology
+.model NMOS0P18	NMOS(Level=1 VTO=0.35 GAMMA=0.3 PHI=0.84
++		LD=0 WD=0 UO=473 LAMBDA=0.28 TOX=4.08E-9 PB=0.9)
+***************** NMOS model ends here *****************************************
+
+******** Analysis begins here****************
+.OP
+.TRAN 	0.01mS  2mS
+*.AC  DEC   20  1 100K
+.PROBE
+.END
+******** Analysis ends here****************

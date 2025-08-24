@@ -1,0 +1,29 @@
+********Problem: P11_79 ***************
+******* Main circuit begins here**************
+RS         VSIG N1  10k
+RF         N1 Q2E  10k
+RE         0 Q2E  140
+I1         VCC Q1C DC 200uAdc
+RL         VO VCC  500
+V_CC         VCC 0 15Vdc
+Q1         Q1C N1 0 QECL
+Q2         VO Q1C Q2E QECL
+VS         VSIG 0  AC 50m
++SIN 0 50m 1k 0 0 0
+******* Main circuit ends here***************
+
+************ Model for ECL BJT begins here*******************************
+.model QECL	NPN(Is=6.734f Xti=3 Eg=1.11 Vaf=100 Bf=100 Ne=1.259
++		Ise=6.734f Ikf=66.78m Xtb=1.5 Br=.7371 Nc=2 Isc=0 Ikr=0 Rc=1
++		Cjc=3.638p Mjc=.3085 Vjc=0.70 Fc=.5 Cje=4.493p Mje=.2593 Vje=0.70
++		Tr=239.5n Tf=301.2p Itf=.4 Vtf=4 Xtf=2 Rb=10)
+************ Model for ECL BJT begins here*******************************
+
+******** Analysis begins here****************
+.OP
+.TRAN 	0.01mS  2mS
+*.AC  DEC   20  1 100K
+.PROBE
+.END
+******** Analysis ends here****************
+

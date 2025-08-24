@@ -1,0 +1,17 @@
+********Problem: P7_111       ***************
+******* Main circuit begins here**************
+Q1         VC VB 0 QECL
+RC         VC VDD  3.3k
+RB         VB VC  120k
+V_DD         VDD 0 3Vdc
+******* Main circuit ends here*******************************
+
+
+************ Model for ECL BJT begins here*******************************
+.model QECL	NPN(Is=0.26fA Bf=100 Br=1 Tf=0.1ns Cje=1pF Cjc=1.5pF Va=100)
+************ Model for ECL BJT begins here*******************************
+
+******** Analysis begins here****************
+.OP
+.END
+******** Analysis ends here****************

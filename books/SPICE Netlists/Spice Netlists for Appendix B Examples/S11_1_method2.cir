@@ -1,0 +1,54 @@
+******Example S 11.1 Method 2 *************
+******* Main circuit begins here**************
+R_RL3         N23 0  {RL}  
+R_RF3         N24 VB12  {RF}  
+R_Rb9         VB11 VCC  {RB1}  
+L_LT2         VC12 VB22  {LT}  
+R_Rb7         VB12 VCC  {RB1}  
+R_RE10         VE21 0  {RE2}  
+R_RF4         N14 VB11  {RF}  
+R_RS4         N11 0  {Rs}  
+R_Re7         VE12 0  {RE1}  
+R_RC9         VC21 VCC  {RC2}  
+R_RE8         VE22 0  {RE2}  
+C_Cc8         N21 VB12  {CC1}  
+C_Cc10         N11 VB11  {CC1}  
+C_CC7         VC22 N23  {CC2}  
+R_RC7         VC22 VCC  {RC2}  
+Q_Q21         VC21 VB21 VE21 Q2N3904
+Q_Q22         VC22 VB22 VE22 Q2N3904
+C_CF3         N24 VE22  {CF}  
+C_CE4         0 VE12  {CE1}  
+R_Re9         VE11 0  {RE1}  
+R_RC8         VC12 VCC  {RC1}  
+Q_Q12         VC12 VB12 VE12 Q2N3904
+R_RC10         VR VCC  {RC1}  
+C_CTI4         N12 VB21  {CTI}  
+R_Rb10         0 VB11  {RB2}  
+C_CC9         VC21 N13  {CC2}  
+C_CF4         N14 VE21  {CF}  
+V_VCC         VCC 0 DC={VCC}
+V_Vt1         N12 0 DC 0Vdc AC 1Vac 
+R_RS3         N21 0  {Rs}  
+R_Rb8         0 VB12  {RB2}  
+R_RL4         N13 0  {RL}  
+C_CE5         0 VE11  {CE1}  
+Q_Q11         VR VB11 VE11 Q2N3904
+L_LT3         VR VB21  {LT}  
+C_CTI3         VB22 VR  {CTO}  
+.PARAM  cto=1k re2=3.4k rs=10k cap=1k re1=870 rb2=15k rb1=100k vcc=12 rl=1k
++  rc1=10k rc2=8k cti=1k cc1=1k ce1=1k cf=1k rf=10k cc2=1k lt=1e9
+******* Main circuit ends here**************
+
+************ Model for 2N3904 NPN BJT begins here**********************************
+.model Q2N3904	NPN(Is=6.734f Xti=3 Eg=1.11 Vaf=74.03 Bf=416.4 Ne=1.259
++		Ise=6.734f Ikf=66.78m Xtb=1.5 Br=.7371 Nc=2 Isc=0 Ikr=0 Rc=1
++		Cjc=3.638p Mjc=.3085 Vjc=.75 Fc=.5 Cje=4.493p Mje=.2593 Vje=.75
++		Tr=239.5n Tf=301.2p Itf=.4 Vtf=4 Xtf=2 Rb=10)
+************ Model for 2N3904 NPN BJT ends here**********************************
+
+******** Analysis begins here****************
+.AC  DEC   20  1 1G
+.PROBE
+.END
+******** Analysis ends here****************

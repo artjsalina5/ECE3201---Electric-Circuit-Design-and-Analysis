@@ -1,0 +1,61 @@
+******* Problem: P9_99 (d)**********************
+******* Main circuit begins here**************
+V2         0 VSS 0.8Vdc
+V1         VDD 0 0.8Vdc
+M3         VD1 VD1 VDD VDD PMOS0P18
++ L=0.6u
++ W=43u
++ M=1
+M2         VO VG2 VS 0 NMOS0P18
++ L=0.6u
++ W=10.68u
++ M=1
+M4         VO VD1 VDD VDD PMOS0P18
++ L=0.6u
++ W=43u
++ M=1
+M1         VD1 VG1 VS 0 NMOS0P18
++ L=0.6u
++ W=10.68u
++ M=1
+V3         VG1 0  AC 10m
++SIN 0 1m 1k 0 0 0
+Iref         VDD VD6 DC 200uAdc
+M5         VS VD6 VSS 0 NMOS0P18
++ L=0.6u
++ W=8.5u
++ M=1
+M6         VD6 VD6 VSS 0 NMOS0P18
++ L=0.6u
++ W=8.5u
++ AD=1.72E-12
++ AS=1.72E-12
++ PD=5.25E-6
++ PS=5.25E-6
++ M=1
+V4         VG2 0  AC 10m
++SIN 0 -1m 1k 0 0 0
+******* Main circuit ends here***************
+
+***************** PMOS model begins here ******************************
+.model PMOS0P18	PMOS(Level=1 VTO=-0.4 GAMMA=0.3 PHI=0.8
++		LD=0 WD=0 UO=148 LAMBDA=0.11 TOX=4.08E-9 PB=0.9 CJ=1E-3
++		CJSW=2.04E-10 MJ=0.45 MJSW=0.29 CGDO=3.43E-10 JS=4.0E-7 CGBO=3.5E-10
++		CGSO=3.43E-10)
+***************** PMOS model ends here *****************************************
+
+***************** NMOS model begins here ******************************
+.model NMOS0P18	NMOS(Level=1 VTO=0.4 GAMMA=0.3 PHI=0.84
++		LD=0 WD=0 UO=591 LAMBDA=0.11 TOX=4.08E-9 PB=0.9 CJ=1.6E-3
++		CJSW=2.04E-10 MJ=0.5 MJSW=0.11 CGDO=3.67E-10 JS=8.38E-6 CGBO=3.8E-10
++		CGSO=3.67E-10)
+***************** NMOS model ends here *****************************************
+
+
+******** Analysis begins here****************
+.OP
+.TRAN 	0.01mS  2mS
+.PROBE
+.END
+******** Analysis ends here****************
+

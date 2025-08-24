@@ -1,0 +1,54 @@
+********Example S 14.2 ***************
+******* Main circuit begins here**************
+R_R4         N14 N15  {R4}
+R_R8         OUT2 N22  {R2}
+V_Vin         IN 0 DC 0Vdc AC 1Vac
+R_R3         N13 N14  {R3}
+C_C5         OUT1 N12  {Cc}
+R_R12         IN N21  {Rg}
+C_C3         N21 OUT2  {C1}
+C_C2         N12 N13  {C2}
+R_R9         N23 N24  {R3}
+R_R6         IN N11  {Rg}
+R_R2         OUT1 N12  {R2}
+R_R5         N11 N15  {R1}
+R_R7         N21 OUT2  {Rd}
+R_R1         N11 OUT1  {Rd}
+C_C1         N11 OUT1  {C1}
+R_R11         N21 N25  {R1}
+R_R10         N24 N25  {R4}
+C_C4         N22 N23  {C2}
+X_A1		0 N11 OUT1 	741_OPAMP_MACRO
+X_A2		0 N12	N13 741_OPAMP_MACRO
+X_A3		0 N14 	N15	741_OPAMP_MACRO
+X_A4		0 N21 OUT2 	IDEAL_OPAMP_MACRO
+X_A5		0 N22	N23 IDEAL_OPAMP_MACRO
+X_A6		0 N24 	N25	IDEAL_OPAMP_MACRO
+.PARAM  cc=0p c1=1.59n r4=10k c2=1.59n r3=10k r2=10k r1=10k rg=200k rd=200k
+******* Main circuit ends here **************
+
+*******741 Opamp macro model begins here **************
+.SUBCKT 741_OPAMP_MACRO    IN+ IN- OUT
+R_R4         IN- 0  {2*Ricm}  
+R_R5         0 IN+  {2*Ricm}  
+G_G1         N31 0 IN- IN+ 0.19m
+R_R1         N32 OUT  {Ro}  
+R_R2         0 N31  {Rp}  
+R_R3         IN+ IN-  {Rid}  
+C_C2         0 N31  {Cp}  
+E_EP1         N32 0 N31 0 1
+.PARAM  ricm=500e6 gm=0.19m ro=75 rp=1.323e9 rid=2e6 cp=30p
+.ENDS
+*******741 Opamp macro model ends here **************
+
+******* Ideal Opamp macro model begins here **************
+.SUBCKT IDEAL_OPAMP_MACRO    IN+ IN- OUT
+E_E1         OUT 0 IN+ IN- 10E6
+.ENDS
+******* Ideal Opamp macro model ends here **************
+
+******** Analysis begins here****************
+.AC  DEC   1000  0.1 20K
+.PROBE
+.END
+******** Analysis ends here****************

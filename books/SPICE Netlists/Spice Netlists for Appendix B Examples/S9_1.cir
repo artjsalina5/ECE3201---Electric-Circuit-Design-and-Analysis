@@ -1,0 +1,55 @@
+********Example S 9.1 ***************
+******* Main circuit begins here**************
+Q_Q2         VC2 INN VC3 Q2N3904
+Q_Q1         VC1 INP VC3 Q2N3904
+R_R3         VC5 VCC  {R3}  
+R_R5         VEE VB8  {R5}  
+Q_Q5         VC5 VC2 VE45 Q2N3904
+Q_Q4         VC4 VC1 VE45 Q2N3904
+R_R4         VC7 VCC  {R4}  
+R_RB         VB3 0  {RB}  
+Q_Q6A         VE45 VB3 VEE Q2N3904
+Q_Q6D         VE45 VB3 VEE Q2N3904
+V_VCC         VCC 0 {VCC}
+V_Vd         D 0 DC -260.4u AC 1Vac 
+Q_Q6B         VE45 VB3 VEE Q2N3904
+V_VEE         VEE 0 {VEE}
+E_En         N1 INN D 0 0.5
+Q_Q8         VCC VB8 OUT Q2N3904
+Q_Q9         VB3 VB3 VEE Q2N3904
+R_R2         VC2 VCC  {R2}  
+R_R1         VC1 VCC  {R1}  
+Q_Q3         VC3 VB3 VEE Q2N3904
+Q_Q7         VB8 VC5 VC7 Q2N3906
+R_R6         VEE OUT  {R6}  
+R_R7         VC4 VCC  {R3_2}  
+Q_Q6C         VE45 VB3 VEE Q2N3904
+E_Ep         INP N1 D 0 0.5
+V_VCM         N1 0 {VCM}
+.PARAM  vcm=0 rb=28.6k vee=-15 r6=3k r5=15.7k r3_2=1e-10 r4=2.3k r3=3k r2=20k
++  vcc=15 r1=20k
+******* Main circuit ends here**************
+
+**************Model for 2N3904 NPN BJT (from Eval library in Pspice) begins here***********
+.model Q2N3904	NPN(Is=6.734f Xti=3 Eg=1.11 Vaf=74.03 Bf=416.4 Ne=1.259
++		Ise=6.734f Ikf=66.78m Xtb=1.5 Br=.7371 Nc=2 Isc=0 Ikr=0 Rc=1
++		Cjc=3.638p Mjc=.3085 Vjc=.75 Fc=.5 Cje=4.493p Mje=.2593 Vje=.75
++		Tr=239.5n Tf=301.2p Itf=.4 Vtf=4 Xtf=2 Rb=10)
+**************Model for 2N3904 NPN BJT (from Eval library in Pspice) ends here***********
+
+**************Model for 2N3906 NPN BJT (from Eval library in Pspice) begins here***********
+.model Q2N3906	PNP(Is=1.41f Xti=3 Eg=1.11 Vaf=18.7 Bf=180.7 Ne=1.5 Ise=0
++		Ikf=80m Xtb=1.5 Br=4.977 Nc=2 Isc=0 Ikr=0 Rc=2.5 Cjc=9.728p
++		Mjc=.5776 Vjc=.75 Fc=.5 Cje=8.063p Mje=.3677 Vje=.75 Tr=33.42n
++		Tf=179.3p Itf=.4 Vtf=4 Xtf=6 Rb=10)
+**************Model for 2N3906 NPN BJT (from Eval library in Pspice) begins here***********
+******** Analysis begins here****************
+.OP
+.DC [LIN] V_Vd  -15 15 0.1
+*.AC  DEC   20  1 1G
+*.DC [LIN] V_VCM  -15 15 0.1
+.PROBE
+.END
+******** Analysis ends here****************
+
+

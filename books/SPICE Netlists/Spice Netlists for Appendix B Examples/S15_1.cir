@@ -1,0 +1,73 @@
+********Example S 15.1 ***************
+******* Main circuit begins here**************
+X_U1         IN+ IN- VCC VEE A uA741
+R_R1a         0 IN-  {R1a}  
+V_VCC         VCC 0 {VCC}
+R_R1b         IN- OUT  {R1b}  
+R_R2         OUT A  {R2}  
+R_R4         N1 A  {R4}  
+D_D2         OUT A D1N4148 
+R_R3         0 IN+  {R3}  
+C_C4         N1 IN+  {C4} IC=0 
+C_C3         0 IN+  {C3} IC=0 
+D_D1         A OUT D1N4148 
+V_VEE         VEE 0 {VEE}
+.PARAM  r1a=18k vee=-15 r4=10k r3=10k c3=16n r2=10k vcc=15 r1b={50k-{r1a}}
++  c4=16n
+******* Main circuit ends here **************
+
+******** Model of uA741 begins here****************
+* connections:   non-inverting input
+*                |  inverting input
+*                |  |  positive power supply
+*                |  |  |  negative power supply
+*                |  |  |  |  output
+*                |  |  |  |  |
+.subckt uA741    1 2 3 4 5
+*
+c1   11 12 8.661E-12
+c2    6  7 30.00E-12
+dc    5 53 dx
+de   54  5 dx
+dlp  90 91 dx
+dln  92 90 dx
+dp    4  3 dx
+egnd 99  0 poly(2) (3,0) (4,0) 0 .5 .5
+fb    7 99 poly(5) vb vc ve vlp vln 0 10.61E6 -10E6 10E6 10E6 -10E6
+ga    6  0 11 12 188.5E-6
+gcm   0  6 10 99 5.961E-9
+iee  10  4 dc 15.16E-6
+hlim 90  0 vlim 1K
+q1   11  2 13 qx
+q2   12  1 14 qx
+r2    6  9 100.0E3
+rc1   3 11 5.305E3
+rc2   3 12 5.305E3
+re1  13 10 1.836E3
+re2  14 10 1.836E3
+ree  10 99 13.19E6
+ro1   8  5 50
+ro2   7 99 100
+rp    3  4 18.16E3
+vb    9  0 dc 0
+vc    3 53 dc 1
+ve   54  4 dc 1
+vlim  7  8 dc 0
+vlp  91  0 dc 40
+vln   0 92 dc 40
+.model dx D(Is=800.0E-18 Rs=1)
+.model qx NPN(Is=800.0E-18 Bf=93.75)
+.ends
+******** Model of uA741 ends here****************
+
+******** Model of 1N4148 Diode (from EVAL library in PSpice) begins here****************
+.model D1N4148  D(Is=2.682n N=1.836 Rs=.5664 Ikf=44.17m Xti=3 Eg=1.11 Cjo=4p
++               M=.3333 Vj=.5 Fc=.5 Isr=1.565n Nr=2 Bv=100 Ibv=100u Tt=11.54n)
+******** Model of 1N4148 Diode (from EVAL library in PSpice) ends here****************
+
+******** Analysis begins here****************
+.TRAN 0.001mS  20mS 
+.PROBE
+.END
+******** Analysis ends here****************
+

@@ -1,0 +1,19 @@
+********Problem: P2_115		***************
+******* Main circuit begins here**************
+C1         0 N1  7.96u  TC=0,0
+R2         IN- OUT  4k TC=0,0
+R1         N2 N1  0.1k TC=0,0
+E1         N2 0 VIN IN- 10000
+E2         OUT 0 N1 0 1
+R3         0 IN-  1k TC=0,0
+V1         VIN 0  AC 1
++SIN 0 10m 10k 0 0 0
+*+PULSE 0 1 1u 1n 1n 100u 200u
+******* Main circuit ends here **************
+
+******** Analysis begins here****************
+.AC  DEC   20  1 10MEG
+*.TRAN 0.005us 5us
+.PROBE
+.END
+******** Analysis ends here****************

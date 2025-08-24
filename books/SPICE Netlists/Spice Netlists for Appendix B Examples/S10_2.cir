@@ -1,0 +1,44 @@
+********Example S 10.2 ***********************
+******* Main circuit begins here**************
+M_M1         VD1 VG1 VS1 0 NMOS4  
++ L=0.2u  
++ W=15.48u  
++ AD=1.72E-12  
++ AS=1.72E-12  
++ PD=5.25E-6  
++ PS=5.25E-6      
++ M=1
+R_RG1         VG1 VDD  852.5k TC=0,0 
+R_RG2         0 VG1  947.5k TC=0,0 
+R_RD1         VD1 VDD  3.41k TC=0,0 
+R_RS1         0 VS1  1.39k TC=0,0 
+R_RL1         0 VOUT  50k TC=0,0 
+R_Rsig1         N1 VSIG  10k TC=0,0 
+C_CCI1         N1 VG1  10u  TC=0,0 
+C_CCO1         VD1 VOUT  10u  TC=0,0 
+V_V1         VSIG 0  AC 1Vac
++SIN 0 1m 1K 0 0 0
+V_VDD         VDD 0 1.8Vdc
+C_CS1         0 VS1  10u  TC=0,0 
+******* Main circuit ends here**************
+
+*****************NMOS models end here*********************
+.model NMOS4	NMOS(Level=1 VTO=0.45 GAMMA=0.3 PHI=0.8 
++		LD=0.01E-06 WD=0 UO=370 LAMBDA=0.08 TOX=5E-9 PB=0.9 CJ=0.57E-3 
++		CJSW=120E-12 MJ=0.5 MJSW=0.4 CGDO=0.4E-9 JS=10E-9 CGBO=0.38E-9
++		CGSO=0.4E-9)
+*****************NMOS models end here*********************
+
+******** Analysis begins here****************
+.OP
+.AC  DEC   20  10m 10G
+.PROBE
+.END
+******** Analysis ends here****************
+
+
+
+
+
+
+?

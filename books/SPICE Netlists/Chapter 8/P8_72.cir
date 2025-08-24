@@ -1,0 +1,31 @@
+********Problem: P8_72		***************
+******* Main circuit begins here**************
+V_DD         VDD 0 1.8Vdc
+I1         VDD VOUT1 DC 200uAdc
+RL         0 VOUT2  123k
+V1         VG2 0 1.421Vdc
+C2         VOUT1 VOUT2  10u
+Vsig         VSIG 0
++SIN 0.73 10u 1k 0 0 0
+M1         VD1 VSIG 0 0 NMOS0P18
++ L=0.36u
++ W=5.4u
++ M=1
+M2         VOUT1 VG2 VD1 0 NMOS0P18
++ L=0.36u
++ W=5.4u
++ M=1
+******* Main circuit ends here**********************************************
+
+***************** NMOS model (0.18um) begins here ******************************
+.model NMOS0P18	NMOS(Level=1 VTO=0.5 GAMMA=0.3 PHI=0.84
++		LD=0 WD=0 UO=450 LAMBDA=0.55 TOX=4.08E-9 PB=0.9 CJ=1.6E-3
++		CJSW=2.04E-10 MJ=0.5 MJSW=0.2 CGDO=3.67E-10 JS=8.38E-6 CGBO=3.8E-10
++		CGSO=3.67E-10)
+***************** NMOS model ends here *****************************************
+
+******** Analysis begins here****************
+.TRAN 	0.01mS  2mS
+.PROBE
+.END
+******** Analysis ends here****************

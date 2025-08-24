@@ -1,0 +1,98 @@
+********Example PS 13.1 TRANS ***************
+******* Main circuit begins here**************
+C_CL         0 OUT  {Cload}  
+R_R         A N1  {R}  
+V_VCC         VDD 0 {VDD}
+M_M8         VG8 VG8 VDD VDD PMOS0P5  
++ L=0.6u  
++ W=1.25u  
++ AD=1.72E-12  
++ AS=1.72E-12  
++ PD=5.25e-6  
++ PS=5.25E-6      
++ M={M8}
+V_Vpulse         IN 0 DC 1.65 
++PULSE {1.65+{Vstep}/2} {1.65-{Vstep}/2} 0 1p 1p 0.1u 0.2u
+M_M6         OUT A 0 0 NMOS0P5  
++ L=0.6u  
++ W=1.25u  
++ AD=1.72E-12  
++ AS=1.72E-12  
++ PD=5.25E-6  
++ PS=5.25E-6      
++ M={M6}
+I_Iref         VG8 0 DC {Iref}  
+M_M2         A IN VD5 VD5 PMOS0P5  
++ L=0.6u  
++ W=1.25u  
++ AD=1.72E-12  
++ AS=1.72E-12  
++ PD=5.25e-6  
++ PS=5.25E-6      
++ M={M2}
+M_M5         VD5 VG8 VDD VDD PMOS0P5  
++ L=0.6u  
++ W=1.25u  
++ AD=1.72E-12  
++ AS=1.72E-12  
++ PD=5.25e-6  
++ PS=5.25E-6      
++ M={M5}
+M_M1         B OUT VD5 VD5 PMOS0P5  
++ L=0.6u  
++ W=1.25u  
++ AD=1.72E-12  
++ AS=1.72E-12  
++ PD=5.25e-6  
++ PS=5.25E-6      
++ M={M1}
+M_M4         A B 0 0 NMOS0P5  
++ L=0.6u  
++ W=1.25u  
++ AD=1.72E-12  
++ AS=1.72E-12  
++ PD=5.25E-6  
++ PS=5.25E-6      
++ M={M4}
+C_Cc         N1 OUT  {Cc}  
+M_M3         B B 0 0 NMOS0P5  
++ L=0.6u  
++ W=1.25u  
++ AD=1.72E-12  
++ AS=1.72E-12  
++ PD=5.25E-6  
++ PS=5.25E-6      
++ M={M3}
+M_M7         OUT VG8 VDD VDD PMOS0P5  
++ L=0.6u  
++ W=1.25u  
++ AD=1.72E-12  
++ AS=1.72E-12  
++ PD=5.25e-6  
++ PS=5.25E-6      
++ M={M7}
+.PARAM  m8=16 vcm=1.65 iref=90u cc=0.6p vstep=10m m6=4 m7=16 m4=2 vdd=3.3 m5=16
++  m2=8 cload=1p m3=2 m1=8 gain=-10 r=3.2k
+******* Main circuit ends here**************
+
+************Model for NMOS in 0.5um CMOS Technology begins here*****************
+* 		(created by Anas Hamoui & Olivier Trescases)
+.model NMOS0P5	NMOS(Level=1 VTO=0.7 GAMMA=0.5 PHI=0.8
++		LD=0.08E-06 WD=0 UO=460 LAMBDA=0.1 TOX=9.5E-9 PB=0.9 CJ=0.57E-3
++		CJSW=120E-12 MJ=0.5 MJSW=0.4 CGDO=0.4E-9 JS=10E-9 CGBO=0.38E-9
++		CGSO=0.4E-9)
+************Model for NMOS in 0.5um CMOS Technology ends here*****************
+
+************Model for PMOS in 0.5um CMOS Technology begins here*****************
+* 		(created by Anas Hamoui & Olivier Trescases)
+.model PMOS0P5	PMOS(Level=1 VTO=-0.8 GAMMA=0.45 PHI=0.8
++		LD=0.09E-06 WD=0 UO=115 LAMBDA=0.2 TOX=9.5E-9 PB=0.9 CJ=0.93E-3
++		CJSW=170E-12 MJ=0.5 MJSW=0.35 CGDO=0.35E-9 JS=5E-9 CGBO=0.38E-9
++		CGSO=0.35E-9)
+************Model for PMOS in 0.5um CMOS Technology ends here*****************
+
+******** Analysis begins here****************
+.TRAN 	0.01nS  400nS
+.PROBE
+.END
+******** Analysis ends here****************
