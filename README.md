@@ -1,6 +1,10 @@
 # ECE 3201: Electronic Circuit Design and Analysis
 
-Welcome to the repository for **ECE 3201: Electronic Circuit Design and Analysis**, a Fall 2025 course at the University of Connecticut. This repository provides an overview of the course structure, materials, and objectives for students and contributors.
+This repository serves as a backup of my work for this course.
+
+All work is my own. Be forewarned: [The Student Code](https://community.uconn.edu/the-student-code/the-student-code-preamble/).
+UConn has a fair share of cheaters that were spawned during the Zoom days of the COVID-19 lockdown.
+I have heard people bragging about how they cheated on AP exams and SAT exams to get to where they are.
 
 ---
 
@@ -73,31 +77,5 @@ The course is organized into five modules:
 - Homework must be submitted in class; late submissions are not accepted.  
 - Lab reports must be submitted by the following Friday 11:59 PM; late reports are not accepted:contentReference[oaicite:3]{index=3}.  
 
----
-
-## Policies and Expectations
-
-- **Academic Integrity**: Plagiarism and copying homework/lab reports will result in a zero and possible reporting to the University.  
-- **Attendance**: Labs and quizzes must be completed on assigned dates.  
-- **Communication**: Course announcements will be made on HuskyCT. Instructor responds within ~24 hours (weekdays).  
-- **Accessibility**: Students requiring accommodations should contact the [Center for Students with Disabilities](https://csd.uconn.edu/) :contentReference[oaicite:4]{index=4}.  
-
----
-
-## Software/Technical Requirements
-
-- **HuskyCT** (Blackboard)  
-- **PSpice** (simulation)  
-- **Microsoft Office**  
-- **Adobe Acrobat Reader**  
-- **Scanner/Smartphone** (for homework uploads):contentReference[oaicite:5]{index=5}  
-
----
-
-## How to Contribute
-
-Contributions to this repository are welcome, especially resources or tools that enhance understanding of the course material. Please ensure that contributions align with **academic integrity policies**.  
-
----
 
 > **Disclaimer**: This repository is an unofficial resource and should not replace official course materials on HuskyCT.
