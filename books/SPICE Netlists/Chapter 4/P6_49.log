@@ -1,0 +1,14 @@
+LTspice 24.1.9 for Windows
+Circuit: C:\home\ECE3201---Electric-Circuit-Design-and-Analysis\books\SPICE Netlists\Chapter 4\P6_49.cir
+Start Time: Tue Aug 26 12:56:40 2025
+solver = Normal
+Maximum thread count: 8
+tnom = 27
+temp = 27
+method = trap
+Direct Newton iteration for .op point succeeded.
+Total elapsed time: 0.052 seconds.
+
+Files loaded:
+C:\home\ECE3201---Electric-Circuit-Design-and-Analysis\books\SPICE Netlists\Chapter 4\P6_49.cir
+

@@ -13,5 +13,6 @@ V_sup         VCC 0 3
 
 ******** Analysis begins here****************
 .OP
+.meas V_sup
 .END
 ******** Analysis ends here****************
