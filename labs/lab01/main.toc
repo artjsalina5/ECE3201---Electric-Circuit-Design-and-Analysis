@@ -1,0 +1,19 @@
+\contentsline {section}{\numberline {1}Abstract}{2}{}%
+\contentsline {section}{\numberline {2}Introduction}{3}{}%
+\contentsline {section}{\numberline {3}Objective}{3}{}%
+\contentsline {section}{\numberline {4}Theory}{3}{}%
+\contentsline {subsection}{\numberline {4.1}Half-Wave Rectifier}{3}{}%
+\contentsline {subsection}{\numberline {4.2}Full-Wave Rectifier}{4}{}%
+\contentsline {subsection}{\numberline {4.3}Filtering}{4}{}%
+\contentsline {subsection}{\numberline {4.4}Peak Inverse Voltage (PIV)}{4}{}%
+\contentsline {section}{\numberline {5}Experimental Procedures}{5}{}%
+\contentsline {subsection}{\numberline {5.1}Circuit One}{5}{}%
+\contentsline {subsection}{\numberline {5.2}Circuit Two}{5}{}%
+\contentsline {subsection}{\numberline {5.3}Circuit Three}{6}{}%
+\contentsline {subsection}{\numberline {5.4}Circuit Four}{6}{}%
+\contentsline {section}{\numberline {6}Results}{7}{}%
+\contentsline {subsection}{\numberline {6.1}Circuit One}{7}{}%
+\contentsline {subsection}{\numberline {6.2}Circuit Two}{9}{}%
+\contentsline {subsection}{\numberline {6.3}Circuit Three}{12}{}%
+\contentsline {subsection}{\numberline {6.4}Circuit 4}{15}{}%
+\contentsline {section}{\numberline {7}Conclusion}{16}{}%
