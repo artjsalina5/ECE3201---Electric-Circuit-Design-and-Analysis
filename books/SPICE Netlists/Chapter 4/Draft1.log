@@ -1,0 +1,17 @@
+LTspice 24.1.9 for Windows
+Circuit: C:\home\ECE3201---Electric-Circuit-Design-and-Analysis\books\SPICE Netlists\Chapter 4\Draft1.net
+Start Time: Fri Aug 29 11:46:23 2025
+solver = Normal
+Maximum thread count: 8
+tnom = 27
+temp = 27
+method = trap
+.OP point found by inspection.
+Total elapsed time: 0.060 seconds.
+
+Files loaded:
+C:\home\ECE3201---Electric-Circuit-Design-and-Analysis\books\SPICE Netlists\Chapter 4\Draft1.net
+C:\Users\artjs\AppData\Local\LTspice\lib\cmp\standard.dio
+
+maxvout: MAX(v(n002))=4.13093471527 FROM 0 TO 0.1
+rmsvout: RMS(v(n002))=1.96802444667 FROM 0 TO 0.1
