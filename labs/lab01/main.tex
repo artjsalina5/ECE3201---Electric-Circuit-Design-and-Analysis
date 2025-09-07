@@ -277,7 +277,10 @@ Because \(V_D\) is a small fraction of the peak (\(0.7/5 \approx 14\%\)), the id
 \(V_{DC}\approx V_p/\pi\) remains accurate and the conduction angle is near \(\pi\). At
 \(2\ \mathrm{V_{pp}}\) (\(V_p=1\ \text{V}\)), \(V_D/V_p\) is large (\(\approx 70\%\)), the conduction angle
 shrinks, and non-idealities (diode curve, meter resolution, waveform distortion) dominate, pulling the
-measured DC below the ideal estimate.
+measured DC below the ideal estimate. The conduction angle at smaller peak input voltages is more affected due to the formula:
+\[
+  \theta = sin^{-1}(\frac{V_d}{V_p})
+\]
 \subsection{Circuit Two}
 Circuit two, shown in Figure \ref{fig:cir2} involved taking measurements of the
 output resistor again, however the characteristics now show a full wave
