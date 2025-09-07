@@ -1,0 +1,20 @@
+\contentsline {section}{\numberline {1}Abstract}{2}{}%
+\contentsline {section}{\numberline {2}Introduction}{3}{}%
+\contentsline {section}{\numberline {3}Objective}{3}{}%
+\contentsline {section}{\numberline {4}Theory}{3}{}%
+\contentsline {section}{\numberline {5}Experimental Procedures}{4}{}%
+\contentsline {section}{\numberline {6}Results}{5}{}%
+\contentsline {subsection}{\numberline {6.1}Circuit 1 - No Load Condition}{5}{}%
+\contentsline {subsection}{\numberline {6.2}Circuit 2 - $3K\Omega $ Load}{6}{}%
+\contentsline {subsection}{\numberline {6.3}Circuit 3 - $0.47K\Omega $ Load}{6}{}%
+\contentsline {subsection}{\numberline {6.4}Line Regulation Analysis}{6}{}%
+\contentsline {subsection}{\numberline {6.5}Load Regulation Analysis}{6}{}%
+\contentsline {subsection}{\numberline {6.6}Derived Device Parameters (from data)}{7}{}%
+\contentsline {paragraph}{Voltage Variation vs.\ $V_{IN}$ (measured)}{7}{}%
+\contentsline {paragraph}{Zener Current Variation vs.\ $V_{IN}$ (measured)}{7}{}%
+\contentsline {subsection}{\numberline {6.7}Simulated Portion}{7}{}%
+\contentsline {subsection}{\numberline {6.8}Simulation Data - Circuit 1 -- No Load}{8}{}%
+\contentsline {subsection}{\numberline {6.9}Simulation Data - Circuit 2 -- $3K\Omega $ Load}{8}{}%
+\contentsline {subsection}{\numberline {6.10}Simulation Data - Circuit 3 -- $0.47K\Omega $ Load}{8}{}%
+\contentsline {subsection}{\numberline {6.11}Summary}{8}{}%
+\contentsline {section}{\numberline {7}Conclusion}{9}{}%
