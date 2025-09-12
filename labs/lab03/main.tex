@@ -1,0 +1,257 @@
+% copyright arturo salinas-aguayo 2025
+\documentclass[12pt]{article}
+
+% --- Packages (same set and order as sample) ---
+\usepackage{graphicx} \usepackage{subcaption} \usepackage{amsmath}
+\usepackage{siunitx} \usepackage{array} \usepackage{amsfonts}
+\usepackage{fancyhdr} \usepackage{geometry} \usepackage{circuitikz}
+\usepackage{caption} \usepackage{karnaugh-map} \usepackage{bm}
+\usepackage{float}
+
+\geometry{letterpaper, margin=1in} \graphicspath{ {../../images/} }
+
+% --- Header and Footer ---
+\pagestyle{fancy} \fancyhf{} \fancyhead[L]{ECE 3201 - Lab 03: Diodes — Clipping and Clamping Circuits}
+\fancyhead[R]{\thepage} \setlength{\headheight}{15pt}
+
+\author{Arturo Salinas-Aguayo}
+\title{Lab 03: Diodes — Clipping and Clamping Circuits}
+
+% --- theorem set & example block, matching sample ---
+\newtheorem{example}{Example}
+\newenvironment{examp} {\vspace{0.5cm} \hrule \vspace{0.5cm}
+    \begin{example}} {\hrule \vspace{0.5cm}
+\end{example}}
+
+\begin{document}
+% convenience macros used in sample
+\newcommand{\closure}[2][3]{% {}
+    \mkern#1mu\overline{\mkern-#1mu#2}}
+\newcommand\ncoverline[1]{\mkern1mu\overline{\mkern-1mu#1\mkern-1mu}\mkern1mu}
+
+% ===================== Title Page =====================
+\begin{titlepage}
+  \centering \vspace*{3cm} \huge\textbf{Lab 03: Diodes — Clipping and Clamping Circuits}\\[2ex]
+
+  \vspace{5cm} \Large\textbf{Arturo Salinas-Aguayo}\\
+  \normalsize ECE 3201 Electronic Circuit Design and Analysis\\
+  Dr. Mehdi Anwar\\
+  Electrical and Computer Engineering Department\\
+  \vfill \includegraphics[scale=0.1]{uconnlogo}\\
+  College of Engineering, University of Connecticut\\
+  \scriptsize{Coded in \LaTeX} \vspace*{1cm}
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+% ===================== Abstract =====================
+\section{Abstract}
+This experiment studies wave-shaping using silicon diodes configured as clippers (series and parallel, with and without DC bias) and as clampers (DC restorer). You will measure output levels for positive and negative input excursions, verify predicted clip thresholds that include diode forward drop(s) and any DC offset sources, and evaluate clamper operation over frequency via the RC time constant criterion. Results will be summarized with scope captures and compared against hand analysis and optional SPICE simulations.
+
+% ===================== Introduction =====================
+\section{Introduction}
+Diode clipper networks bound a signal by conducting during one polarity to clamp the output to approximately a reference level (often a DC source plus diode drop) and otherwise allow the input to pass. Clamping circuits shift a waveform vertically without altering its peak-to-peak amplitude, provided the capacitor holds charge over a cycle (i.e., \(RC\gg T\)). We will implement representative topologies and confirm the expected transfer characteristics experimentally.
+
+% ===================== Objective =====================
+\section{Objective}
+\begin{itemize}
+  \item Build and test biased/unbiased series and parallel diode clippers; record clip levels for both input polarities.
+  \item Build a DC clamper and examine the effect of frequency on output shape; relate to the \(RC\) time constant.
+  \item Compare measurements to predictions that account for \(V_{D}\) (silicon \(\approx\SI{0.7}{V}\)) and bias sources; optionally validate with SPICE.
+\end{itemize}
+
+% ===================== Theory (concise, mirrored pacing) =====================
+\section{Theory}
+\subsection{Clipping Circuits}
+A single diode with a series resistor forms a basic clipper. With a DC source \(V_X\) in series (or anti-series) with the diode, the output clips near \(\pm (V_X + V_D)\) depending on orientation. For an ideal diode the transition is abrupt; a real diode presents \(V_D \approx \SI{0.6}{\text{to}\,0.8}{V}\) and finite slope.
+
+For biased parallel clippers (diode + source to ground), the output follows input until the diode forward-bias condition is met; then the output is held roughly at the bias reference plus \(V_D\).
+
+\subsection{Clamping Circuits}
+A clamper (DC restorer) uses a diode and capacitor to shift the DC level while preserving the input's peak-to-peak. During one half-cycle the diode conducts and charges the capacitor to approximately the input peak (minus \(V_D\)); during the opposite half-cycle the diode is reverse-biased and the capacitor provides the DC shift. To maintain the waveform shape, the discharge through \(R\) over a period should be small: \(RC \gg T=1/f\).
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}{0.48\textwidth}
+    \centering
+    % Placeholder schematic (series clipper with negative bias)
+    \begin{circuitikz}[american]
+      \draw (0,0) to[sV,l_=$V_\text{in}$] (0,3)
+            to[R=2k$\Omega$] (3,3) to[short] (4,3)
+            to[D*, l=Si] (4,0) to[V,l=$-V_X$] (0,0);
+      \draw (4,3) to[short] (6,3) node[right]{$V_0$};
+    \end{circuitikz}
+    \caption{Series clipper (one orientation).}
+  \end{subfigure}\hfill
+  \begin{subfigure}{0.48\textwidth}
+    \centering
+    % Placeholder schematic (clamper)
+    \begin{circuitikz}[american]
+      \draw (0,0) to[sV,l_=$V_\text{in}$] (0,3) to[C=$C$] (3,3) to[short] (5,3) node[right]{$V_0$};
+      \draw (3,3) to[D*, l=Si] (3,0) to[R=2k$\Omega$] (5,0) -- (5,3);
+    \end{circuitikz}
+    \caption{Positive clamper, illustrative.}
+  \end{subfigure}
+  \caption{Representative clipper and clamper topologies (not to scale).}
+\end{figure}
+
+% ===================== Equipment =====================
+\section{Equipment and Components}
+Multimeter, oscilloscope, function generator, DC supply; resistors: \SI{2}{k\Omega} (1), \SI{51}{k\Omega} (1); capacitor: \SI{10}{\micro F} (1); diodes: 1N457 (2).\\
+\textit{Note: Use available lab stock if the exact part number is unavailable; record substitutions.}
+
+% ===================== Experimental Procedures =====================
+\section{Experimental Procedures}
+\subsection{Clipping Circuits}
+\paragraph{1a) Biased clipper (\(-\SI{3}{V}\) reference).} Build the circuit with \(V_X=\SI{3}{V}\) DC bias (polarity as assigned). Set input: square wave, \(V_{pp}=\SI{8}{V}\), \(f=\SI{1}{kHz}\). Measure and record \(V_0\) for positive/negative input.
+
+\paragraph{1b) Reverse diode, then add parallel clipper.} Reverse diode orientation in 1a and repeat measurements. Then add a second diode in parallel as indicated by the lab handout; measure \(V_0\) again for both polarities.
+
+\paragraph{1c) Series clipper (with DC source).} Build the series clipper variant. Record \(V_0\) for positive/negative input. Reverse diode and repeat. Finally, determine the \emph{minimum} DC magnitude required to guarantee conduction in reverse orientation (state assumptions).
+
+\subsection{Clamping Circuit}
+\paragraph{2a) DC restorer with bias.} Build the clamper with \(-\SI{1.5}{V}\) bias. Input: square, \(\SI{8}{V}_{pp}\), \(\SI{1}{kHz}\). Record \(V_0\) for both polarities.
+
+\paragraph{2b) Frequency sweep.} Repeat 2a at \(\SI{50}{kHz}\) and \(\SI{100}{kHz}\). Capture input/output and comment on waveform shape vs frequency; relate to \(\tau=RC\).
+
+% ===================== Data Sheets / Tables for Quick Entry =====================
+\section{Data Recording Sheets}
+\subsection{1a) Biased clipper (\(-\SI{3}{V}\))}
+\begin{table}[H]
+  \centering
+  \caption{Measured output levels, 1a}
+  \begin{tabular}{|c|c|}
+    \hline
+    Condition & \(V_0\) (meas.) \\ \hline
+    \(V_{\text{in}}>0\) & \rule{3cm}{0.4pt} \\ \hline
+    \(V_{\text{in}}<0\) & \rule{3cm}{0.4pt} \\ \hline
+  \end{tabular}
+\end{table}
+
+\subsection{1b) Reverse diode}
+\begin{table}[H]
+  \centering
+  \caption{Measured output levels, 1b (reversed)}
+  \begin{tabular}{|c|c|}
+    \hline
+    Condition & \(V_0\) (meas.) \\ \hline
+    \(V_{\text{in}}>0\) & \rule{3cm}{0.4pt} \\ \hline
+    \(V_{\text{in}}<0\) & \rule{3cm}{0.4pt} \\ \hline
+  \end{tabular}
+\end{table}
+
+\subsection{1b) Parallel clippers}
+\begin{table}[H]
+  \centering
+  \caption{Measured output levels, 1b (parallel)}
+  \begin{tabular}{|c|c|}
+    \hline
+    Condition & \(V_0\) (meas.) \\ \hline
+    \(V_{\text{in}}>0\) & \rule{3cm}{0.4pt} \\ \hline
+    \(V_{\text{in}}<0\) & \rule{3cm}{0.4pt} \\ \hline
+  \end{tabular}
+\end{table}
+
+\subsection{1c) Series clipper}
+\begin{table}[H]
+  \centering
+  \caption{Measured output levels, 1c}
+  \begin{tabular}{|c|c|}
+    \hline
+    Condition & \(V_0\) (meas.) \\ \hline
+    \(V_{\text{in}}>0\) & \rule{3cm}{0.4pt} \\ \hline
+    \(V_{\text{in}}<0\) & \rule{3cm}{0.4pt} \\ \hline
+  \end{tabular}
+\end{table}
+\noindent Minimum DC to guarantee conduction (reverse-orient): \rule{5cm}{0.4pt} \quad Assumptions: \rule{7cm}{0.4pt}
+
+\subsection{2a) Clamper (\(-\SI{1.5}{V}\))}
+\begin{table}[H]
+  \centering
+  \caption{Measured output levels, 2a}
+  \begin{tabular}{|c|c|}
+    \hline
+    Condition & \(V_0\) (meas.) \\ \hline
+    \(V_{\text{in}}>0\) & \rule{3cm}{0.4pt} \\ \hline
+    \(V_{\text{in}}<0\) & \rule{3cm}{0.4pt} \\ \hline
+  \end{tabular}
+\end{table}
+
+\subsection{2b) Frequency sweep}
+\begin{table}[H]
+  \centering
+  \caption{Observed output shape vs frequency (qualitative)}
+  \begin{tabular}{|c|c|c|}
+    \hline
+    Frequency & Observation (shape/offset/droop) & Notes (\(RC\) rationale) \\ \hline
+    \SI{1}{kHz} & \rule{4cm}{0.4pt} & \rule{5cm}{0.4pt} \\ \hline
+    \SI{50}{kHz} & \rule{4cm}{0.4pt} & \rule{5cm}{0.4pt} \\ \hline
+    \SI{100}{kHz} & \rule{4cm}{0.4pt} & \rule{5cm}{0.4pt} \\ \hline
+  \end{tabular}
+\end{table}
+
+% ===================== Analysis =====================
+\section{Analysis}
+\subsection{Predicted Clip Levels}
+Assume silicon \(V_D\approx\SI{0.7}{V}\) unless measured otherwise. For each topology and polarity, compute the expected threshold \(V_0\) when the diode conducts:
+\[ V_{\text{clip}} \approx \pm( V_X + n\,V_D ) \]
+where \(V_X\) is the DC bias magnitude (if present) and \(n\) is the number of series forward drops along the conduction path. Compare these predictions to measured \(V_0\).
+
+\subsection{Clamper Time-Constant Check}
+With \(R=\SI{2}{k\Omega}\) and \(C=\SI{10}{\micro F}\), \(\tau=RC=\SI{20}{ms}\). For \(f=\SI{1}{kHz}\), \(T=\SI{1}{ms}\) so \(\tau/T\approx 20\). For \(\SI{50}{kHz}\) and \(\SI{100}{kHz}\), \(T=\SI{20}{\micro s}\) and \(\SI{10}{\micro s}\) respectively, yielding \(\tau/T\gg 1\). Note any deviations due to source resistance, diode leakage, and ESR.
+
+\subsection{Scope Captures}
+Insert annotated screenshots for each subpart showing input and output with measured levels.
+%
+% \begin{figure}[H]
+%   \centering
+%   \includegraphics[width=0.9\textwidth]{exp02/scope_1a.png}
+%   \caption{Representative scope capture for 1a (label levels, cursors).}
+% \end{figure}
+
+% ===================== Optional SPICE =====================
+\section{Optional: SPICE Netlists}
+\subsection{Parallel/Series Biased Clipper (example)}
+\begin{verbatim}
+* Biased series clipper (example values)
+Vin in 0 PULSE(-4 4 0 1u 1u 0.5m 1m)
+R1 in out 2k
+Vx ref 0 DC 3
+D1 out ref DSi
+.model DSi D(Is=1e-14 N=1.9 Rs=2)
+.tran 0 10m 0 1u
+.probe V(in) V(out)
+.end
+\end{verbatim}
+
+\subsection{Clamper}
+\begin{verbatim}
+* Clamper (positive restorer example)
+Vin in 0 PULSE(-4 4 0 1u 1u 0.5m 1m)
+C1 in out 10u
+D1 out 0 DSi
+Rload out 0 2k
+.model DSi D(Is=1e-14 N=1.9 Rs=2)
+.tran 0 10m 0 1u
+.probe V(in) V(out)
+.end
+\end{verbatim}
+
+% ===================== Results (to be filled) =====================
+\section{Results}
+Summarize measured clip levels and DC shifts in tables, include uncertainties/estimation method (scope resolution, vertical scale), and attach representative captures.
+
+% ===================== Discussion =====================
+\section{Discussion}
+Comment on: (i) agreement between predicted and measured clip thresholds; (ii) effect of diode orientation and added parallel path; (iii) clamper performance vs frequency relative to \(RC\); (iv) non-idealities observed.
+
+% ===================== Conclusion =====================
+\section{Conclusion}
+Provide a concise statement tying measurements to the theory of diode clipping and clamping. Note any design guidance (e.g., choosing \(V_X\), accounting for \(V_D\), selecting \(RC\) for a target frequency band).
+
+% ===================== Appendix =====================
+\section*{Appendix}
+Attach any additional hand calculations, datasheet snippets for the diode used, and exported raw data.
+
+\end{document}
