@@ -1,0 +1,16 @@
+****** Lab 4 Ideal Simulation *******
+****** Author: A. Salinas ***********
+****** Date: September 19, 2025******
+
+Q1 RC N004 0 0 Qbreakn 
+VCC N002 0 DC=15
+RB N004 N003 R=390000
+RC N002 RC R=1000
+VBB N001 0 DC=25.3
+RB1 N001 N003 R=10000
+RB2 N003 0 R=10000
+.model Qbreakn NPN()
+
+.save V(n004) V(n001) V(n003) V(rc) V(n002) I(Q1) I(VCC) I(RB1) I(RB2) I(RB)
++ I(RC) I(VBB)
+.end
